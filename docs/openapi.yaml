@@ -29,6 +29,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not found
+  /product:
     post:
       tags:
         - product
