@@ -1,3 +1,36 @@
+## [1.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/1.0.0...1.1.0) (2023-12-21)
+
+
+### Features
+
+* add Category schema for swagger documentation ([548d21a](https://github.com/AscentEssentials/ascent-essentials-backend/commit/548d21a9c744b2f5eb9ace2518d651b9a75acf09))
+* add file to watch to generate api from ([53af69b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/53af69b5d1a199b2a9cda283f5bb9cec6240a58b))
+* add schema for Product as swagger documentation ([8604a2a](https://github.com/AscentEssentials/ascent-essentials-backend/commit/8604a2a7a794d98b67cdc6b0ad228f7520bafaac))
+* define routes to handle products ([57a7dec](https://github.com/AscentEssentials/ascent-essentials-backend/commit/57a7decf5c61df60a0c587f71112050688552ae0))
+* provide routes to consult API ([e94a868](https://github.com/AscentEssentials/ascent-essentials-backend/commit/e94a868c9f8a44aaa1157b2aa7a67f3b85e52d3e))
+* remove swagger ui for manual defined api ([73b75bb](https://github.com/AscentEssentials/ascent-essentials-backend/commit/73b75bbd916c93c468c6c6c49273360007357238))
+
+
+### Documentation
+
+* add instruction on how to run the server and removed endpoint for manually defined api ([450cb80](https://github.com/AscentEssentials/ascent-essentials-backend/commit/450cb804e2b318f3ccdf6afdb27eed758d0123d4))
+* add readme with API Endpoints guide ([1bb1229](https://github.com/AscentEssentials/ascent-essentials-backend/commit/1bb1229c08c38e65f2290f894a10a3626dd5362b))
+
+
+### Build and continuous integration
+
+* add dependencies for swagger ([b80d205](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b80d2058e7f3f13596151dd630756c2c9e5c0c37))
+
+
+### General maintenance
+
+* remove unused import ([cd5ca9c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/cd5ca9c943370b0873d44bdc719e1534792f2451))
+
+
+### Refactoring
+
+* move swagger configuration to another file ([ee92ae6](https://github.com/AscentEssentials/ascent-essentials-backend/commit/ee92ae65e44e441d6d64f683dc5c895a03ab9ec0))
+
 ## 1.0.0 (2023-12-20)
 
 
