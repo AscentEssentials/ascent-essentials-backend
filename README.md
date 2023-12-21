@@ -1,9 +1,9 @@
 # Ascent Essentials Backend
 
 ## Environment Configuration
-| VARIABLE | REQUIRED | DEFAULT | DESCRIPTION |
-| -------- | -------- | ------- | ----------- |
-| PORT     | false    | 3000    | The port    |
+| VARIABLE | REQUIRED | DEFAULT | DESCRIPTION                          |
+| -------- | -------- | ------- | ------------------------------------ |
+| PORT     | false    | 3000    | The port on wich the server will run |
 
 
 ## Running the Server
