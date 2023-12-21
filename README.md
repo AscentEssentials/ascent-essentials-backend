@@ -1,5 +1,11 @@
 # Ascent Essentials Backend
 
+## Environment Configuration
+| VARIABLE | REQUIRED | DEFAULT | DESCRIPTION |
+| -------- | -------- | ------- | ----------- |
+| PORT     | false    | 3000    | The port    |
+
+
 ## Running the Server
 To run the server locally, follow these steps:
 1. Clone the repository.
