@@ -1,5 +1,6 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+import { port } from "../server";
 
 export const generateSwaggerDocs = () => {
   const swaggerOptions = {
@@ -9,7 +10,7 @@ export const generateSwaggerDocs = () => {
         title: "Ascent Essentials - Backend API",
         version: "0.1.0",
         description: "Documentation for Ascent Essentials backend",
-        servers: [`http://localhost:${process.env.PORT || 3000}`],
+        servers: [`http://localhost:${port}`],
       },
     },
     // Path to the API docs
