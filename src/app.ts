@@ -1,6 +1,11 @@
 import express, { Express } from "express";
-import routes from './routes/routes';
-import { generateSwaggerDocs, serveSwaggerUi, setupSwaggerUi } from './utils/swaggerConfig';
+import routes from "./routes/routes";
+import {
+  generateSwaggerDocs,
+  serveSwaggerUi,
+  setupSwaggerUi,
+} from "./utils/swaggerConfig";
+const mongoose = require("mongoose");
 
 const app: Express = express();
 
@@ -8,9 +13,23 @@ const app: Express = express();
 const swaggerDocs = generateSwaggerDocs();
 
 // Serve and setup Swagger UI
-app.use('/api-docs', serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
+app.use("/api-docs", serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
 
 // Definition of the routes
-app.use('/', routes);
+app.use("/", routes);
+
+const MONGODB_URL = process.env.MONGODB_URL || "localhost:27017";
+
+mongoose
+  .connect(MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("[mongoose]: Connected to the database");
+  })
+  .catch((err: any) => {
+    console.log("[mongoose]: Error connecting to the database", err);
+  });
 
 export default app;
