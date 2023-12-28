@@ -18,7 +18,7 @@ app.use("/api-docs", serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
 // Definition of the routes
 app.use("/", routes);
 
-const MONGODB_URL = process.env.MONGODB_URL || "localhost:27017";
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb://localhost:27017";
 
 mongoose
   .connect(MONGODB_URL)
