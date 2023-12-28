@@ -1,22 +1,12 @@
 import express, { Express } from "express";
 import routes from "./routes/routes";
-import {
-  generateSwaggerDocs,
-  serveSwaggerUi,
-  setupSwaggerUi,
-} from "./utils/swaggerConfig";
+
 import mongoose from "mongoose";
 
 const app: Express = express();
 
 // Middleware to parse JSON in the request body
 app.use(express.json());
-
-// Auto-generated Swagger docs
-const swaggerDocs = generateSwaggerDocs();
-
-// Serve and setup Swagger UI
-app.use("/api-docs", serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
 
 // Definition of the routes
 app.use("/", routes);
