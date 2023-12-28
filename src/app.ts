@@ -1,9 +1,6 @@
 import express, { Express } from "express";
-import dotenv from "dotenv";
 import routes from './routes/routes';
 import { generateSwaggerDocs, serveSwaggerUi, setupSwaggerUi } from './utils/swaggerConfig';
-
-dotenv.config();
 
 const app: Express = express();
 
