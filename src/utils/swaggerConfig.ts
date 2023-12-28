@@ -1,6 +1,9 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-import { port } from "../server";
+import dotenv from "dotenv";
+
+dotenv.config();
+const port = process.env.PORT || 3000;
 
 export const generateSwaggerDocs = () => {
   const swaggerOptions = {
