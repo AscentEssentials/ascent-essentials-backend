@@ -10,7 +10,49 @@ import CategoryController from '../controllers/categoryController';
  */
 
 const router = express.Router();
+
+/**
+ * @swagger
+ * /categories:
+ *   get:
+ *     tags: [Categories]
+ *     summary: Get all categories
+ *     responses:
+ *       200:
+ *         description: Returns all categories
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Category'
+ *       500:
+ *         description: Internal server error
+ */
 router.get('/categories', CategoryController.getAllCategories);
+
+/**
+ * @swagger
+ * /category:
+ *   post:
+ *     tags: [Categories]
+ *     summary: Create a new category
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Category'
+ *     responses:
+ *       201:
+ *         description: The created category
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Category'
+ *       500:
+ *         description: Internal server error
+ */
 router.post("/category", CategoryController.createCategory);
 
 export default router;
