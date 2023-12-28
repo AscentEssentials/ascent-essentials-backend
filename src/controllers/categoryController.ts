@@ -23,7 +23,6 @@ export class CategoryController {
    */
   static async createCategory(req: Request, res: Response): Promise<void> {
     try {
-      console.log("aooo");
       const { name, description } = req.body;
       const newCategory: ICategoryDocument = new CategoryModel({
         name,
