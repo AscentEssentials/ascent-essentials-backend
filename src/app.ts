@@ -21,10 +21,7 @@ app.use("/", routes);
 const MONGODB_URL = process.env.MONGODB_URL || "localhost:27017";
 
 mongoose
-  .connect(MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(MONGODB_URL)
   .then(() => {
     console.log("[mongoose]: Connected to the database");
   })
