@@ -9,6 +9,9 @@ import mongoose from "mongoose";
 
 const app: Express = express();
 
+// Middleware to parse JSON in the request body
+app.use(express.json());
+
 // Auto-generated Swagger docs
 const swaggerDocs = generateSwaggerDocs();
 
