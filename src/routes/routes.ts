@@ -40,4 +40,9 @@ router.get("/health", async (_, res: Response) => {
   }
 });
 
+// Catch undefined routes
+router.use("*", (_, res: Response) => {
+  res.status(404).send("Not Found");
+});
+
 export default router;
