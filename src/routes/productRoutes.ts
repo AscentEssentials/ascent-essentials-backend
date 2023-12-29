@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { ProductController } from "../controllers/productController";
 
 /**
  * Express router for handling product-related routes.
@@ -24,19 +25,12 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Product'
- *       400:
- *         description: Bad request
- *       404:
- *         description: No products found
+ *                 $ref: '#/components/schemas/ProductResponse'
  *       500:
  *         description: Internal server error
  */
 
-router.route("/products").get((req: Request, res: Response) => {
-  // Logic to fetch all products from the database
-  res.send("Get all products");
-});
+router.get("/products", ProductController.getAllProducts);
 
 /**
  * @swagger
@@ -56,19 +50,13 @@ router.route("/products").get((req: Request, res: Response) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Product'
+ *               $ref: '#/components/schemas/ProductResponse'
  *       '400':
  *         description: Bad request
- *       '401':
- *         description: Unauthorized
  *       '500':
  *         description: Internal server error
  */
-
-router.post("/products", (req: Request, res: Response) => {
-  // Logic to create a new product in the database
-  res.send("Create a new product");
-});
+router.post("/product", ProductController.createProduct);
 
 /**
  * @swagger
