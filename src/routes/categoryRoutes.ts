@@ -1,5 +1,5 @@
 import express from "express";
-import CategoryController from '../controllers/categoryController';
+import CategoryController from "../controllers/categoryController";
 
 /**
  * Express router for handling category-related routes.
@@ -25,11 +25,11 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Category'
+ *                 $ref: '#/components/schemas/CategoryResponse'
  *       500:
  *         description: Internal server error
  */
-router.get('/categories', CategoryController.getAllCategories);
+router.get("/categories", CategoryController.getAllCategories);
 
 /**
  * @swagger
@@ -49,7 +49,7 @@ router.get('/categories', CategoryController.getAllCategories);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Category'
+ *               $ref: '#/components/schemas/CategoryResponse'
  *       400:
  *         description: Bad request
  *       500:
