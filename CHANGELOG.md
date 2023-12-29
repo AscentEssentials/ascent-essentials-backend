@@ -1,3 +1,63 @@
+## [1.2.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/1.1.0...1.2.0) (2023-12-29)
+
+
+### Features
+
+* add category routes ([996b7ff](https://github.com/AscentEssentials/ascent-essentials-backend/commit/996b7ff2722b854c5bf0e9f497f1c07ae3b62c36))
+* add controller for Category ([075037b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/075037bd20c0d85ff69f06d6881940d61c064c9c))
+* add JSON body parser middleware ([9725d91](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9725d914017a59d18372cc3f543379da96887f2e))
+* model for a Category ([2f0af09](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2f0af0921c1427f094d196484bd08383cfbd16e8))
+* mongoose connection to db ([66c7d3d](https://github.com/AscentEssentials/ascent-essentials-backend/commit/66c7d3d05208cdf4643c3ab180142b1169b28982))
+
+
+### Dependency updates
+
+* **deps:** update dependency @types/supertest to v6 ([56a3180](https://github.com/AscentEssentials/ascent-essentials-backend/commit/56a3180f3e9acf1422792abbe9a9a6f0b5890782))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.85 ([bd75235](https://github.com/AscentEssentials/ascent-essentials-backend/commit/bd752354773952a31a196a0ca8a582975a002c69))
+
+
+### Bug Fixes
+
+* remove circular import ([5acb5ae](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5acb5aebb62cc748d11496ec4aa8ac7bb06039cb))
+* start script path now is correct ([9e4380e](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9e4380e70ffc337505390342803909babe3b36d1))
+
+
+### Documentation
+
+* add details for environment variables ([907b2fb](https://github.com/AscentEssentials/ascent-essentials-backend/commit/907b2fb94f15056b27806c70b87fb6d89cb82365))
+* add openapi description for category routes ([93ae859](https://github.com/AscentEssentials/ascent-essentials-backend/commit/93ae8591c7e76d34b7a90ea2517959f3a3282808))
+* improve readme environment variable description ([c03fa05](https://github.com/AscentEssentials/ascent-essentials-backend/commit/c03fa0557f06c101f833a6d612833402baeabf66))
+* refer to the Product schema in the swagger routes documentation ([422417c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/422417cb63b42db5a84ed9ecaedadb38c58793e5))
+* update openapi Category schema, removing id ([fdd6907](https://github.com/AscentEssentials/ascent-essentials-backend/commit/fdd6907097421be16c8c47797277114909d480f9))
+* update readme adding MONGODB_URL as required environment variable ([e3b97e4](https://github.com/AscentEssentials/ascent-essentials-backend/commit/e3b97e4da21182574a0bd2f36553038f61d070c8))
+* update readme with mongodb env variable ([fa5e064](https://github.com/AscentEssentials/ascent-essentials-backend/commit/fa5e0648ee444ee64066105811e7c619efe67797))
+
+
+### Tests
+
+* fix test ([b3293e3](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b3293e3efed7c1ddc72d5d394da652fda6270b47))
+
+
+### Build and continuous integration
+
+* add mongodb url as env variable ([8cb80dc](https://github.com/AscentEssentials/ascent-essentials-backend/commit/8cb80dc7f21ca30435d09ebbcd5aa16c3c8d3888))
+* add mongoode depencency ([2f2e8a9](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2f2e8a99aa6eebc285ef59ce8c340da5b53697f8))
+
+
+### General maintenance
+
+* remove deprecated option of mongoose connection ([0f39ea6](https://github.com/AscentEssentials/ascent-essentials-backend/commit/0f39ea69e0ac1ce6db9cc5ef5ec516f891b090f7))
+* remove unused dotenv and his import ([14b2434](https://github.com/AscentEssentials/ascent-essentials-backend/commit/14b24347af0ce0a30bc7562eaf8a32ad2a15df8e))
+* remove unused log ([af95482](https://github.com/AscentEssentials/ascent-essentials-backend/commit/af95482b329f37cb09cd917b57e51c89816d48a5))
+* use import instead of require ([0eeb502](https://github.com/AscentEssentials/ascent-essentials-backend/commit/0eeb502fa30397349325a7e8981b8fdd55a2c150))
+
+
+### Refactoring
+
+* change MONGODB_URL default value ([42154f7](https://github.com/AscentEssentials/ascent-essentials-backend/commit/42154f7cf0c2a11299b0a71ca515dede034d2f9c))
+* move the definition of routes in a dedicated file ([6329e25](https://github.com/AscentEssentials/ascent-essentials-backend/commit/6329e25ce305847f2063c201acd98af5ea713994))
+* set swagger server with the same port defined in server.ts ([26a7ec1](https://github.com/AscentEssentials/ascent-essentials-backend/commit/26a7ec1c5d945eaf345bf89d110a8c99aaff3342))
+
 ## [1.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/1.0.0...1.1.0) (2023-12-21)
 
 
