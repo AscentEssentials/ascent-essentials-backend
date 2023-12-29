@@ -12,20 +12,6 @@ const router = express.Router();
 
 /**
  * @swagger
- * /:
- *   get:
- *     summary: home page
- *     responses:
- *       200:
- *         description: Returns the home page message
- */
-
-router.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
-
-/**
- * @swagger
  * /products:
  *   get:
  *     tags: [Products]
