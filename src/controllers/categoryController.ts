@@ -24,6 +24,14 @@ export class CategoryController {
   static async createCategory(req: Request, res: Response): Promise<void> {
     try {
       const { name, description } = req.body;
+
+      // Input validation, expected to be a string and should not be empty or only contain whitespace characters.
+      if (typeof name !== "string" || !name.trim()) {
+        console.error("[CategoryController] Invalid or missing category name");
+        res.status(400).send("Invalid or missing category name");
+        return;
+      }
+
       const newCategory: ICategoryDocument = new CategoryModel({
         name,
         description,
@@ -31,7 +39,7 @@ export class CategoryController {
       await newCategory.save();
       res.status(201).json(newCategory);
     } catch (error) {
-      console.log("[CategoryController] Error creating category:", error);
+      console.error("[CategoryController] Error creating category:", error);
       res.status(500).send("Internal Server Error");
     }
   }

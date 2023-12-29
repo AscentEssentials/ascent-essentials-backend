@@ -50,6 +50,8 @@ router.get('/categories', CategoryController.getAllCategories);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Category'
+ *       400:
+ *         description: Bad request
  *       500:
  *         description: Internal server error
  */
