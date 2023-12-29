@@ -11,7 +11,13 @@ export class CategoryController {
   static async getAllCategories(req: Request, res: Response): Promise<void> {
     try {
       const categories: ICategoryDocument[] = await CategoryModel.find();
-      res.status(200).json(categories);
+      // Response to respect the array of CategoryResponse schema.
+      const response = categories.map((category) => ({
+        _id: category._id,
+        name: category.name,
+        description: category.description,
+      }));
+      res.status(200).json(response);
     } catch (error) {
       console.log("[CategoryController] Error fetching categories:", error);
       res.status(500).send("Internal Server Error");
@@ -37,7 +43,14 @@ export class CategoryController {
         description,
       });
       await newCategory.save();
-      res.status(201).json(newCategory);
+
+      // Response to respect the CategoryResponse schema.
+      const response = {
+        _id: newCategory._id,
+        name: newCategory.name,
+        description: newCategory.description,
+      };
+      res.status(201).json(response);
     } catch (error) {
       console.error("[CategoryController] Error creating category:", error);
       res.status(500).send("Internal Server Error");
