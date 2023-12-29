@@ -42,7 +42,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *         price: 19.99
  *         category: "60a9b8e5b6f9b7287418b16c"
  *         description: "This is the description of Product 1"
- *         technicalSpecifications: { color: "red", stars: 2 }
+ *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
  *         quantity: 50
  */
 
@@ -51,22 +51,51 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  * components:
  *   schemas:
  *     ProductResponse:
- *       allOf:
- *         - $ref: '#/components/schemas/Product'
- *         - type: object
- *           properties:
- *             _id:
- *               type: string
- *               description: The auto-generated ID of the product
- *           example:
- *             _id: "60a9b9a3b6f9b7287418b16d"
- *             name: "Product 1"
- *             brand: "Brand A"
- *             price: 19.99
- *             category: "60a9b8e5b6f9b7287418b16c"
- *             description: "This is the description of Product 1"
- *             technicalSpecifications: { color: "red", stars: 2 }
- *             quantity: 50
+ *       type: object
+ *       required:
+ *         - _id
+ *         - name
+ *         - brand
+ *         - price
+ *         - category
+ *         - description
+ *         - technicalSpecifications
+ *         - quantity
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: The ID of the product
+ *         name:
+ *           type: string
+ *           description: The name of the product
+ *         brand:
+ *           type: string
+ *           description: The brand of the product
+ *         price:
+ *           type: number
+ *           description: The price of the product
+ *         category:
+ *           type: string
+ *           description: The ID of the category to which the product belongs
+ *         description:
+ *           type: string
+ *           description: The description of the product
+ *         technicalSpecifications:
+ *           type: object
+ *           description: JSON field for technical specifications
+ *         quantity:
+ *           type: number
+ *           minimum: 0
+ *           description: The available quantity of the product
+ *       example:
+ *         _id: "60a9b8e5b6f9b7287418b16c"
+ *         name: "Product 1"
+ *         brand: "Brand A"
+ *         price: 19.99
+ *         category: "60a9b8e5b6f9b7287418b16c"
+ *         description: "This is the description of Product 1"
+ *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
+ *         quantity: 50
  */
 
 /**
