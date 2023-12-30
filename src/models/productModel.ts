@@ -13,6 +13,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *         - category
  *         - description
  *         - quantity
+ *         - images
  *       properties:
  *         name:
  *           type: string
@@ -36,6 +37,11 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *           type: number
  *           minimum: 0
  *           description: The available quantity of the product
+ *         images:
+ *           type: array
+ *           items:
+ *             type: string
+ *             format: binary
  *       example:
  *         name: "Product 1"
  *         brand: "Brand A"
@@ -44,6 +50,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *         description: "This is the description of Product 1"
  *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
  *         quantity: 50
+ *         images: ["base64encodedimage"]
  */
 
 /**
@@ -61,6 +68,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *         - description
  *         - technicalSpecifications
  *         - quantity
+ *         - images
  *       properties:
  *         _id:
  *           type: string
@@ -101,7 +109,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *         description: "This is the description of Product 1"
  *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
  *         quantity: 50
- *         images: ["image1.jpg", "image2.jpg"]
+ *         images: ["uploads/image1.jpg", "uploads/image2.jpg"]
  */
 
 /**
