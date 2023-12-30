@@ -87,6 +87,11 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *           type: number
  *           minimum: 0
  *           description: The available quantity of the product
+ *         images:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Paths to the images of the product
  *       example:
  *         _id: "60a9b8e5b6f9b7287418b16c"
  *         name: "Product 1"
@@ -96,6 +101,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *         description: "This is the description of Product 1"
  *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
  *         quantity: 50
+ *         images: ["image1.jpg", "image2.jpg"]
  */
 
 /**
@@ -109,6 +115,7 @@ export interface IProductDocument extends mongoose.Document {
   description: string;
   technicalSpecifications: Record<string, unknown>; // JSON field
   quantity: number;
+  images: string[]; // Array of file paths for images
 }
 
 const productSchema = new Schema<IProductDocument>({
@@ -130,6 +137,7 @@ const productSchema = new Schema<IProductDocument>({
   description: { type: String, required: true },
   technicalSpecifications: { type: Schema.Types.Mixed }, // JSON field
   quantity: { type: Number, required: true, min: 0 },
+  images: [{ type: String }], // Array of file paths for images
 });
 
 const productModel: Model<IProductDocument> = mongoose.model(
