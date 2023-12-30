@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { ProductController } from "../controllers/productController";
+import { ProductController, upload } from "../controllers/productController";
 
 /**
  * Express router for handling product-related routes.
@@ -41,9 +41,11 @@ router.get("/products", ProductController.getAllProducts);
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
- *             $ref: '#/components/schemas/Product'
+ *             type: object
+ *             properties:
+ *               $ref: '#/components/schemas/Product'
  *     responses:
  *       '201':
  *         description: Product created successfully
@@ -56,7 +58,11 @@ router.get("/products", ProductController.getAllProducts);
  *       '500':
  *         description: Internal server error
  */
-router.post("/product", ProductController.createProduct);
+router.post(
+  "/product",
+  upload.array("images"),
+  ProductController.createProduct
+);
 
 /**
  * @swagger

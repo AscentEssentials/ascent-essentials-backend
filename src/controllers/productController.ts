@@ -1,6 +1,20 @@
 import { Request, Response } from "express";
 import ProductModel, { IProductDocument } from "../models/productModel";
 import mongoose from "mongoose";
+import multer from "multer";
+import path from "path";
+
+// Multer configuration
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/"); // Specify the directory to store uploaded files
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname); // Rename the file to avoid conflicts
+  },
+});
+
+export const upload = multer({ storage: storage });
 
 /**
  * Controller for handling product-related operations.
@@ -22,6 +36,7 @@ export class ProductController {
         description: product.description,
         technicalSpecifications: product.technicalSpecifications,
         quantity: product.quantity,
+        images: product.images,
       }));
       res.status(200).json(response);
     } catch (error) {
@@ -45,25 +60,46 @@ export class ProductController {
         quantity,
       } = req.body;
 
-      // Input validation
-      if (
-        typeof name !== "string" ||
-        !name.trim() ||
-        typeof brand !== "string" ||
-        !brand.trim() ||
-        typeof price !== "number" ||
-        isNaN(price) ||
-        typeof category !== "string" ||
-        !category.trim() ||
-        typeof description !== "string" ||
-        !description.trim() ||
-        typeof technicalSpecifications !== "object" ||
-        typeof quantity !== "number" ||
-        isNaN(quantity)
-      ) {
+      try {
+        // Convert price and quantity to numbers
+        const numericPrice = parseFloat(price);
+        const numericQuantity = parseInt(quantity);
+
+        // Parse technicalSpecifications JSON string into an object
+        const parsedTechnicalSpecifications = JSON.parse(
+          technicalSpecifications
+        );
+
+        // Input validation
+        if (
+          typeof name !== "string" ||
+          !name.trim() ||
+          typeof brand !== "string" ||
+          !brand.trim() ||
+          isNaN(numericPrice) ||
+          typeof category !== "string" ||
+          !category.trim() ||
+          typeof description !== "string" ||
+          !description.trim() ||
+          typeof parsedTechnicalSpecifications !== "object" ||
+          isNaN(numericQuantity)
+        ) {
+          console.error("[ProductController] Invalid or missing product data");
+          res.status(400).send("Invalid or missing product data");
+          return;
+        }
+      } catch (error) {
         console.error("[ProductController] Invalid or missing product data");
         res.status(400).send("Invalid or missing product data");
         return;
+      }
+
+      // Handle image uploads
+      const imagePaths: string[] = [];
+      if (Array.isArray(req.files) && req.files.length > 0) {
+        (req.files as Express.Multer.File[]).forEach((file) => {
+          imagePaths.push(path.join("uploads", file.filename));
+        });
       }
 
       const newProduct: IProductDocument = new ProductModel({
@@ -74,6 +110,7 @@ export class ProductController {
         description,
         technicalSpecifications,
         quantity,
+        images: imagePaths,
       });
 
       await newProduct.save();
@@ -88,6 +125,7 @@ export class ProductController {
         description: newProduct.description,
         technicalSpecifications: newProduct.technicalSpecifications,
         quantity: newProduct.quantity,
+        images: newProduct.images,
       };
       res.status(201).json(response);
     } catch (error: unknown) {
