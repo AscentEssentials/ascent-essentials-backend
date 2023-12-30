@@ -1,12 +1,15 @@
 import express, { Express } from "express";
 import routes from "./routes/routes";
-
 import mongoose from "mongoose";
+import cors from "cors";
 
 const app: Express = express();
 
 // Middleware to parse JSON in the request body
 app.use(express.json());
+
+// CORS
+app.use(cors());
 
 // Definition of the routes
 app.use("/", routes);
