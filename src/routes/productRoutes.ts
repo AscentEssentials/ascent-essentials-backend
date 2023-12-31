@@ -36,7 +36,8 @@ router.get("/products", ProductController.getAllProducts);
  * @swagger
  * /product:
  *   post:
- *     tags: [Products]
+ *     tags:
+ *       - Products
  *     summary: Create a new product
  *     requestBody:
  *       required: true
@@ -45,7 +46,25 @@ router.get("/products", ProductController.getAllProducts);
  *           schema:
  *             type: object
  *             properties:
- *               $ref: '#/components/schemas/Product'
+ *               name:
+ *                 type: string
+ *               brand:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               technicalSpecifications:
+ *                 type: object
+ *               quantity:
+ *                 type: number
+ *               images:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: binary
  *     responses:
  *       '201':
  *         description: Product created successfully
