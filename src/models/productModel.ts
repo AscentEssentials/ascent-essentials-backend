@@ -1,4 +1,4 @@
-import mongoose, { Model, Schema, Types } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 
 /**
  * @swagger
@@ -120,7 +120,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
 export interface IProductDocument extends mongoose.Document {
   name: string;
   brand: string;
-  price: mongoose.Types.Decimal128;
+  price: Number;
   category: mongoose.Schema.Types.ObjectId;
   description: string;
   technicalSpecifications: Record<string, unknown>; // JSON field
@@ -131,7 +131,7 @@ export interface IProductDocument extends mongoose.Document {
 const productSchema = new Schema<IProductDocument>({
   name: { type: String, required: true },
   brand: { type: String, required: true },
-  price: { type: Types.Decimal128, required: true },
+  price: { type: Number, required: true },
   category: {
     type: Schema.Types.ObjectId,
     ref: "Category",
