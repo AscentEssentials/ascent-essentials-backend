@@ -4,10 +4,12 @@ import mongoose from "mongoose";
 import multer from "multer";
 import path from "path";
 
+export const directoryToStoreImages = "uploads/products/images";
+
 // Multer configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Specify the directory to store uploaded files
+    cb(null, directoryToStoreImages); // Specify the directory to store uploaded files
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname); // Rename the file to avoid conflicts
@@ -98,7 +100,7 @@ export class ProductController {
       const imagePaths: string[] = [];
       if (Array.isArray(req.files) && req.files.length > 0) {
         (req.files as Express.Multer.File[]).forEach((file) => {
-          imagePaths.push(path.join("uploads", file.filename));
+          imagePaths.push(path.join(file.filename));
         });
       }
 
