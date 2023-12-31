@@ -1,9 +1,6 @@
 import express, { Request, Response } from "express";
-import {
-  ProductController,
-  upload,
-  directoryToStoreImages,
-} from "../controllers/productController";
+import { ProductController } from "../controllers/productController";
+import { upload, directoryToStoreImages } from "../utils/multerConfig";
 
 /**
  * Express router for handling product-related routes.
