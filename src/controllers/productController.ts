@@ -3,8 +3,14 @@ import ProductModel, { IProductDocument } from "../models/productModel";
 import mongoose from "mongoose";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 
 export const directoryToStoreImages = "uploads/products/images";
+
+// Create the directory if it doesn't exist
+if (!fs.existsSync(directoryToStoreImages)) {
+  fs.mkdirSync(directoryToStoreImages, { recursive: true });
+}
 
 // Multer configuration
 const storage = multer.diskStorage({
