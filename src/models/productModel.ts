@@ -12,6 +12,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *         - price
  *         - category
  *         - description
+ *         - technicalSpecifications
  *         - quantity
  *         - images
  *       properties:
@@ -39,6 +40,7 @@ import mongoose, { Model, Schema, Types } from "mongoose";
  *           description: The available quantity of the product
  *         images:
  *           type: array
+ *           description: Image files for the product
  *           items:
  *             type: string
  *             format: binary

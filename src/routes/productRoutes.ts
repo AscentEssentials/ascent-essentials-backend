@@ -44,27 +44,7 @@ router.get("/products", ProductController.getAllProducts);
  *       content:
  *         multipart/form-data:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               brand:
- *                 type: string
- *               price:
- *                 type: number
- *               category:
- *                 type: string
- *               description:
- *                 type: string
- *               technicalSpecifications:
- *                 type: object
- *               quantity:
- *                 type: number
- *               images:
- *                 type: array
- *                 items:
- *                   type: string
- *                   format: binary
+ *             $ref: '#/components/schemas/Product'
  *     responses:
  *       '201':
  *         description: Product created successfully
