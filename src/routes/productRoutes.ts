@@ -1,5 +1,9 @@
 import express, { Request, Response } from "express";
-import { ProductController, upload } from "../controllers/productController";
+import {
+  ProductController,
+  upload,
+  directoryToStoreImages,
+} from "../controllers/productController";
 
 /**
  * Express router for handling product-related routes.
@@ -10,6 +14,33 @@ import { ProductController, upload } from "../controllers/productController";
  */
 
 const router = express.Router();
+
+/**
+ * @swagger
+ * /product/image/{imageName}:
+ *   get:
+ *     tags: [Products]
+ *     summary: Serve a specific product image
+ *     description: Endpoint to serve a specific product image.
+ *     parameters:
+ *       - in: path
+ *         name: imageName
+ *         required: true
+ *         description: The name of the image file.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Image served successfully
+ *         content:
+ *           image/*:
+ *             example: <binary image data>
+ *       '404':
+ *         description: Image not found
+ *       '500':
+ *         description: Internal server error
+ */
+router.use("/product/image", express.static(directoryToStoreImages));
 
 /**
  * @swagger
