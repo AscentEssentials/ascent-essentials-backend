@@ -1,3 +1,58 @@
+## [2.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/1.2.0...2.0.0) (2024-01-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* update post product route to handle image upload
+
+### Features
+
+* add health check route ([0be094b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/0be094ba4fcc425c3af521f40bd943835ba5b35d))
+* add images array to Product model ([f794755](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f7947553ccdcfe4656c4f596d14049dda7d954d5))
+* add input validation for the creation of a new category ([36ffef7](https://github.com/AscentEssentials/ascent-essentials-backend/commit/36ffef75c161950d48e8f315ad4a4a6b935b73ed))
+* add Product model ([9e50313](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9e50313f5ca89e404f69f0f61c2ec79b37569420))
+* add route to Catch undefined routes ([2f45d09](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2f45d09bf6e52a0c561fdc84c9e4ca2a67517559))
+* controller for Product ([30caaee](https://github.com/AscentEssentials/ascent-essentials-backend/commit/30caaeeecd8f5c04ab2641e09b0a28510312fe49))
+* Create the directory if it doesn't exist ([22a42de](https://github.com/AscentEssentials/ascent-essentials-backend/commit/22a42deb0e377eb9082545e014eedefa05530701))
+* defined a new schema for Category response ([622cee2](https://github.com/AscentEssentials/ascent-essentials-backend/commit/622cee2e27ff0eff1061d3bbf3d0ded5bfc6f7bb))
+* enable cors ([920c2bc](https://github.com/AscentEssentials/ascent-essentials-backend/commit/920c2bce58d83350582292cd8d5b081203b1f1de))
+* removed not-yet-implemented routes ([d8a84ae](https://github.com/AscentEssentials/ascent-essentials-backend/commit/d8a84aec65c6351717848d1758ecc5dd4f0bf192))
+* route to serve a specific product image ([e3538c1](https://github.com/AscentEssentials/ascent-essentials-backend/commit/e3538c10387c385f8d0f2a4e0d5a266ecb8f7ab2))
+* update post product route to handle image upload ([4d412d2](https://github.com/AscentEssentials/ascent-essentials-backend/commit/4d412d2af0b18aabff01488e742e598f50509fd3))
+* use a const to define path for product images ([4791b13](https://github.com/AscentEssentials/ascent-essentials-backend/commit/4791b13ef6d4fe43cf6dad039a1ace3a9e3e4bc4))
+* use controller in create and get all products routes ([a46ec9d](https://github.com/AscentEssentials/ascent-essentials-backend/commit/a46ec9d0f0155ac3ccec152c7a0134795c000774))
+
+
+### Dependency updates
+
+* **deps:** update dependency @types/node to v20.10.6 ([1d73c3c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/1d73c3c5254984bef3d21f64ac3d0dd52527850c))
+* **deps:** update dependency @types/supertest to v6.0.2 ([2097a9d](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2097a9dd7686b4fca25762a5dfa26959093632e6))
+
+
+### Documentation
+
+* add instruction to run in development mode in readme ([6b64e72](https://github.com/AscentEssentials/ascent-essentials-backend/commit/6b64e729e7a00f628cbf8edbe7ab475b14e5f659))
+* define the request body without referencingto product schema ([db15822](https://github.com/AscentEssentials/ascent-essentials-backend/commit/db158225e64204374404e1025bbb14e0921e7b9f))
+* edit Product schema ([8268b7b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/8268b7b88745dce157a877b87851023ce071ca27))
+* refer to product schema for product uplaod ([4dde56e](https://github.com/AscentEssentials/ascent-essentials-backend/commit/4dde56e46e35d009fae64a036d52b263eedafec3))
+
+
+### Tests
+
+* change status code to check ([b90d97e](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b90d97e84d9d3b8bd663cff610b125fcae4a07a6))
+
+
+### Build and continuous integration
+
+* add cors dependency ([c12dbed](https://github.com/AscentEssentials/ascent-essentials-backend/commit/c12dbed71587c0e878161751c483fb079d8b0f48))
+* add multer dependency (for file upload) ([d73b2e9](https://github.com/AscentEssentials/ascent-essentials-backend/commit/d73b2e9cdc1eda2f8c3e35e7a0e6b983ecd48ac2))
+
+
+### Refactoring
+
+* 'price' field type from 'Types.Decimal128' to 'Number' ([d980056](https://github.com/AscentEssentials/ascent-essentials-backend/commit/d98005661c90f977a39cc0753adc57458035738f))
+* move multer config in a dedicated file in utils ([b8fcfbf](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b8fcfbfb43ba9759dd9db0e8e9b0ddb993ff1ecd))
+
 ## [1.2.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/1.1.0...1.2.0) (2023-12-29)
 
 
