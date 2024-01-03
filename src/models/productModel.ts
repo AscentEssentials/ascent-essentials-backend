@@ -151,6 +151,13 @@ const productSchema = new Schema<IProductDocument>({
   images: [{ type: String }], // Array of file paths for images
 });
 
+// Indexes for text search
+productSchema.index({
+  name: "text",
+  brand: "text",
+  description: "text",
+});
+
 const productModel: Model<IProductDocument> = mongoose.model(
   "Product",
   productSchema
