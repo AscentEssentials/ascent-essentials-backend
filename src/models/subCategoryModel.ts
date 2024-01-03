@@ -72,8 +72,8 @@ const subCategorySchema = new Schema<ISubCategoryDocument>({
       },
       message: "Invalid category reference",
     },
-    description: String,
   },
+  description: String,
 });
 
 const subCategoryModel: Model<ISubCategoryDocument> = mongoose.model(
