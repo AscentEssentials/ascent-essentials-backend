@@ -1,3 +1,20 @@
+## [5.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/4.0.0...5.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* provide route to search products
+
+### Features
+
+* provide route to search products ([d3446f5](https://github.com/AscentEssentials/ascent-essentials-backend/commit/d3446f576af85cdcf7139b7b913e0ce2f90cdaa4))
+
+
+### Documentation
+
+* add description to product search endpoint in Swagger ([7db3dff](https://github.com/AscentEssentials/ascent-essentials-backend/commit/7db3dff9af303bb288bac17c775f8ae20a58b297))
+* remove openapi yaml file (the swagger doc is generated from code) ([49f31b3](https://github.com/AscentEssentials/ascent-essentials-backend/commit/49f31b3d3405412731cfdd8e4c11d40ff3366d5b))
+
 ## [4.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/3.0.0...4.0.0) (2024-01-03)
 
 
