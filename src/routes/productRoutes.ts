@@ -125,4 +125,33 @@ router.get(
   ProductController.getProductsBySubCategory
 );
 
+/**
+ * @swagger
+ * /product/{productId}:
+ *   get:
+ *     tags: [Products]
+ *     summary: Get a product by ID
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         required: true
+ *         description: The ID of the product
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns the product
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ProductResponse'
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Product not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/product/:productId", ProductController.getProductById);
+
 export default router;
