@@ -322,6 +322,61 @@ export class ProductController {
       res.status(500).send("Internal Server Error");
     }
   }
+
+  /**
+   * Delete a product by ID.
+   */
+  static async deleteProductById(req: Request, res: Response): Promise<void> {
+    try {
+      const productId = req.params.productId;
+
+      // Validate if productId is a valid ObjectId
+      if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+        console.error("[ProductController] Invalid product id");
+        res.status(400).send("Invalid product id");
+        return;
+      }
+
+      // Check if the product exists
+      const existingProduct: IProductDocument | null =
+        await ProductModel.findById(productId);
+      if (!existingProduct) {
+        console.error("[ProductController] Product not found");
+        res.status(404).send("Product not found");
+        return;
+      }
+
+      // Delete existing images from the storage
+      if (existingProduct.images && existingProduct.images.length > 0) {
+        try {
+          existingProduct.images.forEach((imagePath) => {
+            const fullPath = path.join(directoryToStoreImages, imagePath);
+            if (fs.existsSync(fullPath)) {
+              fs.unlinkSync(fullPath);
+            } else {
+              console.warn(`[ProductController] Image not found: ${fullPath}`);
+            }
+          });
+        } catch (error) {
+          console.error(
+            "[ProductController] Error deleting existing images:",
+            error
+          );
+          res.status(500).send("Internal Server Error");
+          return;
+        }
+      }
+
+      // Remove the product from the database
+      await ProductModel.deleteOne({ _id: productId });
+
+      // Respond with a 204 status indicating successful deletion
+      res.status(204).send();
+    } catch (error) {
+      console.error("[ProductController] Error deleting product:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
 }
 
 export default ProductController;

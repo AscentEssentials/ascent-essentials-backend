@@ -193,4 +193,29 @@ router.put(
   ProductController.editProduct
 );
 
+/**
+ * @swagger
+ * /product/{productId}:
+ *   delete:
+ *     tags: [Products]
+ *     summary: Delete a product by ID
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         required: true
+ *         description: The ID of the product to delete
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '204':
+ *         description: Product deleted successfully
+ *       '400':
+ *         description: Bad request
+ *       '404':
+ *         description: Product not found
+ *       '500':
+ *         description: Internal server error
+ */
+router.delete("/product/:productId", ProductController.deleteProductById);
+
 export default router;
