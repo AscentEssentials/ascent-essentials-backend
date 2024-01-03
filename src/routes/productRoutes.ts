@@ -154,4 +154,43 @@ router.get(
  */
 router.get("/product/:productId", ProductController.getProductById);
 
+/**
+ * @swagger
+ * /product/{productId}:
+ *   put:
+ *     tags: [Products]
+ *     summary: Update details of a product
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         required: true
+ *         description: The ID of the product to update
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       '200':
+ *         description: Product updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ProductResponse'
+ *       '400':
+ *         description: Bad request
+ *       '404':
+ *         description: Product not found
+ *       '500':
+ *         description: Internal server error
+ */
+router.put(
+  "/product/:productId",
+  upload.array("images"),
+  ProductController.editProduct
+);
+
 export default router;
