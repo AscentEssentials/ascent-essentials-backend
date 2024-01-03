@@ -1,6 +1,7 @@
 import express, { Response } from "express";
 import categoryRoutes from "./categoryRoutes";
 import productRoutes from "./productRoutes";
+import subCategoryRoutes from "./subCategoryRoutes";
 import mongoose from "mongoose";
 import {
   generateSwaggerDocs,
@@ -15,6 +16,7 @@ const swaggerDocs = generateSwaggerDocs();
 router.use("/api-docs", serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
 router.use("/", categoryRoutes);
 router.use("/", productRoutes);
+router.use("/", subCategoryRoutes);
 
 /**
  * @swagger
