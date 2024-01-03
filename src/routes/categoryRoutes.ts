@@ -2,11 +2,11 @@ import express from "express";
 import CategoryController from "../controllers/categoryController";
 
 /**
- * Express router for handling category-related routes.
+ * Express router for handling category and subcategory related routes.
  * @swagger
  * tags:
  *   name: Categories
- *   description: API endpoints for managing categories
+ *   description: API endpoints for managing categories and subcategories
  */
 
 const router = express.Router();
