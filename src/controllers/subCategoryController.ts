@@ -33,6 +33,45 @@ export class SubCategoryController {
   }
 
   /**
+   * Get details of a subcategory.
+   */
+  static async getSubCategory(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.query;
+
+      // Validate if id is a valid ObjectId
+      if (!id || !mongoose.Types.ObjectId.isValid(id as string)) {
+        console.error("[SubCategoryController] Invalid subcategory id");
+        res.status(400).send("Invalid subcategory id");
+        return;
+      }
+
+      const subCategory: ISubCategoryDocument | null =
+        await SubCategoryModel.findById(id);
+      if (!subCategory) {
+        console.error("[SubCategoryController] subcategory not found");
+        res.status(404).send("Subcategory not found");
+        return;
+      }
+
+      // Response to respect the CategoryResponse schema.
+      const response = {
+        _id: subCategory._id,
+        name: subCategory.name,
+        categoryId: subCategory.categoryId,
+        description: subCategory.description,
+      };
+      res.status(200).json(response);
+    } catch (error) {
+      console.error(
+        "[SubCategoryController] Error fetching subcategory:",
+        error
+      );
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
    * Create a new subcategory.
    */
   static async createSubCategory(req: Request, res: Response): Promise<void> {
