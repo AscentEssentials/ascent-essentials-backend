@@ -224,6 +224,9 @@ router.delete("/product/:productId", ProductController.deleteProductById);
  *   get:
  *     tags: [Products]
  *     summary: Search for products based on a query string
+ *     description: |
+ *       This endpoint allows you to search for products based on a query string.
+ *       The search is performed on the `name`, `brand`, and `description` fields.
  *     parameters:
  *       - in: query
  *         name: query
