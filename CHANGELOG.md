@@ -1,3 +1,31 @@
+## [3.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/2.0.0...3.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* provide route to edit a subcategory
+* in product, reference to subcategory instead of category
+* provide subcategory routes
+
+### Features
+
+* add subCategory controller ([ef50df5](https://github.com/AscentEssentials/ascent-essentials-backend/commit/ef50df59527de7284fd979640d710e042e0a0128))
+* add subCategory model ([b9edc12](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b9edc12aaf9a60287bd218ea57e7e886b09fc3cd))
+* defined subcategory routes ([2b22f7c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2b22f7cec5f01fbf9802f658da8b9b3f53de1946))
+* in product, reference to subcategory instead of category ([3efe6cc](https://github.com/AscentEssentials/ascent-essentials-backend/commit/3efe6ccc88001d4a64b8ee88a961f2b6d437bdf0))
+* provide route to edit a subcategory ([605a121](https://github.com/AscentEssentials/ascent-essentials-backend/commit/605a121cd79819d47fd84f782a50d19241cdcf20))
+* provide subcategory routes ([b1331ba](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b1331bac0bc7ae2727295acd89d35655107d7273))
+
+
+### Bug Fixes
+
+* description in the subcategory schema ([aad6555](https://github.com/AscentEssentials/ascent-essentials-backend/commit/aad65556507dc28a060c3608d13c415d2a3c3f49))
+
+
+### Documentation
+
+* update swagger categories tag description to include subcategory ([59557cd](https://github.com/AscentEssentials/ascent-essentials-backend/commit/59557cdb2746ed7a7896d79cb6bd67a6384dd15d))
+
 ## [2.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/1.2.0...2.0.0) (2024-01-02)
 
 
