@@ -14,6 +14,37 @@ const router = express.Router();
 
 /**
  * @swagger
+ * /product:
+ *   post:
+ *     tags:
+ *       - Products
+ *     summary: Create a new product
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       '201':
+ *         description: Product created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ProductResponse'
+ *       '400':
+ *         description: Bad request
+ *       '500':
+ *         description: Internal server error
+ */
+router.post(
+  "/product",
+  upload.array("images"),
+  ProductController.createProduct
+);
+
+/**
+ * @swagger
  * /product/image/{imageName}:
  *   get:
  *     tags: [Products]
@@ -59,37 +90,6 @@ router.use("/product/image", express.static(directoryToStoreImages));
  */
 
 router.get("/products", ProductController.getAllProducts);
-
-/**
- * @swagger
- * /product:
- *   post:
- *     tags:
- *       - Products
- *     summary: Create a new product
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             $ref: '#/components/schemas/Product'
- *     responses:
- *       '201':
- *         description: Product created successfully
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ProductResponse'
- *       '400':
- *         description: Bad request
- *       '500':
- *         description: Internal server error
- */
-router.post(
-  "/product",
-  upload.array("images"),
-  ProductController.createProduct
-);
 
 /**
  * @swagger
