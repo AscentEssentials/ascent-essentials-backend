@@ -124,20 +124,6 @@ export class ProductController {
         res.status(400).send(error.message);
       } else {
         console.error("[ProductController] Error creating product:", error);
-        // If an error occurs, delete the newly uploaded images
-        if (Array.isArray(req.files) && req.files.length > 0) {
-          try {
-            req.files.forEach((file) => {
-              const filePath = path.join(directoryToStoreImages, file.filename);
-              fs.unlinkSync(filePath);
-            });
-          } catch (deleteError) {
-            console.error(
-              "[ProductController] Error deleting uploaded images:",
-              deleteError
-            );
-          }
-        }
         res.status(500).send("Internal Server Error");
       }
     }
@@ -333,20 +319,6 @@ export class ProductController {
       res.status(200).json(response);
     } catch (error) {
       console.error("[ProductController] Error editing product:", error);
-      // If an error occurs, delete the newly uploaded images
-      if (Array.isArray(req.files) && req.files.length > 0) {
-        try {
-          req.files.forEach((file) => {
-            const filePath = path.join(directoryToStoreImages, file.filename);
-            fs.unlinkSync(filePath);
-          });
-        } catch (deleteError) {
-          console.error(
-            "[ProductController] Error deleting uploaded images:",
-            deleteError
-          );
-        }
-      }
       res.status(500).send("Internal Server Error");
     }
   }
