@@ -179,6 +179,48 @@ export class ProductController {
       res.status(500).send("Internal Server Error");
     }
   }
+
+  /**
+   * Get details of a product.
+   */
+  static async getProductById(req: Request, res: Response): Promise<void> {
+    try {
+      const productId = req.params.productId;
+
+      // Validate if productId is a valid ObjectId
+      if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+        console.error("[ProductController] Invalid product id");
+        res.status(400).send("Invalid product id");
+        return;
+      }
+      // Check if the product exists
+      const product: IProductDocument | null = await ProductModel.findById(
+        productId
+      );
+      if (!product) {
+        console.error("[ProductController] Product not found");
+        res.status(404).send("Product not found");
+        return;
+      }
+
+      // Response to respect the ProductResponse schema.
+      const response = {
+        _id: product._id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        subCategoryId: product.subCategoryId,
+        description: product.description,
+        technicalSpecifications: product.technicalSpecifications,
+        quantity: product.quantity,
+        images: product.images,
+      };
+      res.status(200).json(response);
+    } catch (error) {
+      console.error("[ProductController] Error fetching product:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
 }
 
 export default ProductController;
