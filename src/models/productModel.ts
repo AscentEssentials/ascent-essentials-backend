@@ -136,6 +136,7 @@ const productSchema = new Schema<IProductDocument>({
     type: Schema.Types.ObjectId,
     ref: "SubCategory",
     required: true,
+    index: true,
     validate: {
       validator: async function (value: mongoose.Types.ObjectId) {
         const subCategory = await mongoose.model("SubCategory").findById(value);
