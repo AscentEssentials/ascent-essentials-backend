@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 import CategoryModel, { ICategoryDocument } from "../models/categoryModel";
 
 /**
@@ -20,6 +21,42 @@ export class CategoryController {
       res.status(200).json(response);
     } catch (error) {
       console.log("[CategoryController] Error fetching categories:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
+   * Get details of a category.
+   */
+  static async getCategory(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.query;
+
+      // Validate if id is a valid ObjectId
+      if (!id || !mongoose.Types.ObjectId.isValid(id as string)) {
+        console.error("[CategoryController] Invalid category id");
+        res.status(400).send("Invalid category id");
+        return;
+      }
+      
+      const category: ICategoryDocument | null = await CategoryModel.findById(
+        id
+      );
+      if (!category) {
+        console.error("[CategoryController] Category not found");
+        res.status(404).send("Category not found");
+        return;
+      }
+
+      // Response to respect the CategoryResponse schema.
+      const response = {
+        _id: category._id,
+        name: category.name,
+        description: category.description,
+      };
+      res.status(200).json(response);
+    } catch (error) {
+      console.error("[CategoryController] Error fetching category:", error);
       res.status(500).send("Internal Server Error");
     }
   }
