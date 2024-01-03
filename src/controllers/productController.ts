@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import ProductModel, { IProductDocument } from "../models/productModel";
+import SubCategoryModel from "../models/subCategoryModel";
 import mongoose from "mongoose";
 import path from "path";
 
@@ -123,6 +124,59 @@ export class ProductController {
         console.error("[ProductController] Error creating product:", error);
         res.status(500).send("Internal Server Error");
       }
+    }
+  }
+
+  /**
+   * Get all products of a subcategory.
+   */
+  static async getProductsBySubCategory(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    try {
+      const subcategoryId = req.params.subcategoryId;
+
+      // Validate if subcategoryId is a valid ObjectId
+      if (!subcategoryId || !mongoose.Types.ObjectId.isValid(subcategoryId)) {
+        console.error("[ProductController] Invalid subcategory id");
+        res.status(400).send("Invalid subcategory id");
+        return;
+      }
+      // Check if the subcategory exists
+      const isSubCategoryExists = await SubCategoryModel.exists({
+        _id: subcategoryId,
+      });
+      if (!isSubCategoryExists) {
+        console.error("[ProductController] Subcategory not found");
+        res.status(404).send("Subcategory not found");
+        return;
+      }
+
+      const products: IProductDocument[] = await ProductModel.find({
+        subCategoryId: subcategoryId,
+      });
+
+      // Response to respect the ProductResponse schema.
+      const response = products.map((product) => ({
+        _id: product._id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        subCategoryId: product.subCategoryId,
+        description: product.description,
+        technicalSpecifications: product.technicalSpecifications,
+        quantity: product.quantity,
+        images: product.images,
+      }));
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.error(
+        "[ProductController] Error fetching products by subcategory:",
+        error
+      );
+      res.status(500).send("Internal Server Error");
     }
   }
 }

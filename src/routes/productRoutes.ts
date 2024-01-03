@@ -91,4 +91,37 @@ router.post(
   ProductController.createProduct
 );
 
+/**
+ * @swagger
+ * /products/subcategory/{subcategoryId}:
+ *   get:
+ *     tags: [Products]
+ *     summary: Get all products of a subcategory
+ *     parameters:
+ *       - in: path
+ *         name: subcategoryId
+ *         required: true
+ *         description: The ID of the subcategory
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns all products of the subcategory
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/ProductResponse'
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Subcategory not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/products/subcategory/:subcategoryId", ProductController.getProductsBySubCategory);
+
+
+
 export default router;
