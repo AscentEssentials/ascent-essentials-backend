@@ -78,4 +78,39 @@ router.get("/subcategory", SubCategoryController.getSubCategory);
  */
 router.post("/subcategory", SubCategoryController.createSubCategory);
 
+/**
+ * @swagger
+ * /subcategory/{id}:
+ *   put:
+ *     tags: [Categories]
+ *     summary: Update details of a subcategory
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the subcategory to update
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SubCategory'
+ *     responses:
+ *       200:
+ *         description: Returns updated details of the subcategory
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SubCategoryResponse'
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Subcategory not found
+ *       500:
+ *         description: Internal server error
+ */
+router.put("/subcategory/:id", SubCategoryController.editSubCategory);
+
 export default router;

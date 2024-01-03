@@ -123,6 +123,58 @@ export class SubCategoryController {
       }
     }
   }
+
+  /**
+   * Update details of a subcategory.
+   */
+  static async editSubCategory(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const { name, categoryId, description } = req.body;
+
+      // Validate if id is a valid ObjectId
+      if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+        console.error("[SubCategoryController] Invalid subcategory id");
+        res.status(400).send("Invalid subcategory id");
+        return;
+      }
+
+      // Validate if categoryId is a valid ObjectId
+      if (!categoryId || !mongoose.Types.ObjectId.isValid(categoryId)) {
+        console.error("[SubCategoryController] Invalid category id");
+        res.status(400).send("Invalid category id");
+        return;
+      }
+
+      const updatedSubCategory: ISubCategoryDocument | null =
+        await SubCategoryModel.findByIdAndUpdate(
+          id,
+          { name, categoryId, description },
+          { new: true }
+        );
+
+      if (!updatedSubCategory) {
+        console.error("[SubCategoryController] Subcategory not found");
+        res.status(404).send("Subcategory not found");
+        return;
+      }
+
+      // Response to respect the CategoryResponse schema.
+      const response = {
+        _id: updatedSubCategory._id,
+        name: updatedSubCategory.name,
+        categoryId: updatedSubCategory.categoryId,
+        description: updatedSubCategory.description,
+      };
+      res.status(200).json(response);
+    } catch (error) {
+      console.error(
+        "[SubCategoryController] Error updating subcategory:",
+        error
+      );
+      res.status(500).send("Internal Server Error");
+    }
+  }
 }
 
 export default SubCategoryController;
