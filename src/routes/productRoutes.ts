@@ -120,8 +120,9 @@ router.post(
  *       500:
  *         description: Internal server error
  */
-router.get("/products/subcategory/:subcategoryId", ProductController.getProductsBySubCategory);
-
-
+router.get(
+  "/products/subcategory/:subcategoryId",
+  ProductController.getProductsBySubCategory
+);
 
 export default router;
