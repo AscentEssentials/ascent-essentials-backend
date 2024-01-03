@@ -10,7 +10,7 @@ import mongoose, { Model, Schema } from "mongoose";
  *         - name
  *         - brand
  *         - price
- *         - category
+ *         - subCategoryId
  *         - description
  *         - technicalSpecifications
  *         - quantity
@@ -25,9 +25,9 @@ import mongoose, { Model, Schema } from "mongoose";
  *         price:
  *           type: number
  *           description: The price of the product
- *         category:
+ *         subCategoryId:
  *           type: string
- *           description: The ID of the category to which the product belongs
+ *           description: The ID of the subcategory to which the product belongs
  *         description:
  *           type: string
  *           description: The description of the product
@@ -48,7 +48,7 @@ import mongoose, { Model, Schema } from "mongoose";
  *         name: "Product 1"
  *         brand: "Brand A"
  *         price: 19.99
- *         category: "60a9b8e5b6f9b7287418b16c"
+ *         subCategoryId: "60a9b8e5b6f9b7287418b16c"
  *         description: "This is the description of Product 1"
  *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
  *         quantity: 50
@@ -66,7 +66,7 @@ import mongoose, { Model, Schema } from "mongoose";
  *         - name
  *         - brand
  *         - price
- *         - category
+ *         - subCategoryId
  *         - description
  *         - technicalSpecifications
  *         - quantity
@@ -84,9 +84,9 @@ import mongoose, { Model, Schema } from "mongoose";
  *         price:
  *           type: number
  *           description: The price of the product
- *         category:
+ *         subCategoryId:
  *           type: string
- *           description: The ID of the category to which the product belongs
+ *           description: The ID of the subcategory to which the product belongs
  *         description:
  *           type: string
  *           description: The description of the product
@@ -107,7 +107,7 @@ import mongoose, { Model, Schema } from "mongoose";
  *         name: "Product 1"
  *         brand: "Brand A"
  *         price: 19.99
- *         category: "60a9b8e5b6f9b7287418b16c"
+ *         subCategoryId: "60a9b8e5b6f9b7287418b16c"
  *         description: "This is the description of Product 1"
  *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
  *         quantity: 50
@@ -121,7 +121,7 @@ export interface IProductDocument extends mongoose.Document {
   name: string;
   brand: string;
   price: Number;
-  category: mongoose.Schema.Types.ObjectId;
+  subCategoryId: mongoose.Schema.Types.ObjectId;
   description: string;
   technicalSpecifications: Record<string, unknown>; // JSON field
   quantity: number;
@@ -132,16 +132,16 @@ const productSchema = new Schema<IProductDocument>({
   name: { type: String, required: true },
   brand: { type: String, required: true },
   price: { type: Number, required: true },
-  category: {
+  subCategoryId: {
     type: Schema.Types.ObjectId,
-    ref: "Category",
+    ref: "SubCategory",
     required: true,
     validate: {
       validator: async function (value: mongoose.Types.ObjectId) {
-        const category = await mongoose.model("Category").findById(value);
-        return !!category;
+        const subCategory = await mongoose.model("SubCategory").findById(value);
+        return !!subCategory;
       },
-      message: "Invalid category reference",
+      message: "Invalid subcategory reference",
     },
   },
   description: { type: String, required: true },

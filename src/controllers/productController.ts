@@ -19,7 +19,7 @@ export class ProductController {
         name: product.name,
         brand: product.brand,
         price: product.price,
-        category: product.category,
+        subCategoryId: product.subCategoryId,
         description: product.description,
         technicalSpecifications: product.technicalSpecifications,
         quantity: product.quantity,
@@ -41,7 +41,7 @@ export class ProductController {
         name,
         brand,
         price,
-        category,
+        subCategoryId,
         description,
         technicalSpecifications,
         quantity,
@@ -64,8 +64,8 @@ export class ProductController {
           typeof brand !== "string" ||
           !brand.trim() ||
           isNaN(numericPrice) ||
-          typeof category !== "string" ||
-          !category.trim() ||
+          typeof subCategoryId !== "string" ||
+          !subCategoryId.trim() ||
           typeof description !== "string" ||
           !description.trim() ||
           typeof parsedTechnicalSpecifications !== "object" ||
@@ -93,7 +93,7 @@ export class ProductController {
         name,
         brand,
         price,
-        category,
+        subCategoryId,
         description,
         technicalSpecifications,
         quantity,
@@ -108,7 +108,7 @@ export class ProductController {
         name: newProduct.name,
         brand: newProduct.brand,
         price: newProduct.price,
-        category: newProduct.category,
+        category: newProduct.subCategoryId,
         description: newProduct.description,
         technicalSpecifications: newProduct.technicalSpecifications,
         quantity: newProduct.quantity,
