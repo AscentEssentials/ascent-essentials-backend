@@ -1,3 +1,32 @@
+## [4.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/3.0.0...4.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* add route to delete a product
+* add route to edit a product
+* add route to provide details of a product by its id
+* add route to retrieve all products of a subcategory
+
+### Features
+
+* add route to delete a product ([f03465b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f03465b428fb4d8fdd1bb5f0a0a52dbea2a7fc90))
+* add route to edit a product ([3f277cc](https://github.com/AscentEssentials/ascent-essentials-backend/commit/3f277cc3b31779bdfd5844e0e2ba89236aaa075e))
+* add route to provide details of a product by its id ([2219917](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2219917afbcc6eee9d9d800220009c5ba557ea31))
+* add route to retrieve all products of a subcategory ([5c6c19f](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5c6c19fb70b9f77bb09849157778d4f8f1264440))
+
+
+### Bug Fixes
+
+* If an error occurs while editing or uploading a product, newly uploaded images are deleted ([b70f548](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b70f548f8ce71554426d8a2fc3cad8a7fa4cd184))
+* Revert If an error occurs while editing or uploading a product, newly uploaded images are deleted ([702f642](https://github.com/AscentEssentials/ascent-essentials-backend/commit/702f642e375013e92d8e6ee60d7aa054ad94820e))
+
+
+### Style improvements
+
+* move post "/product" route to the top of swagger ([04f3950](https://github.com/AscentEssentials/ascent-essentials-backend/commit/04f395005e08c1bd59c710f2d39b1fd5d26df038))
+* reformat indent ([9d4fb6b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9d4fb6b88281292b1768811130fcb0baf8007747))
+
 ## [3.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/2.0.0...3.0.0) (2024-01-03)
 
 
