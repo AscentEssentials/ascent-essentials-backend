@@ -218,4 +218,33 @@ router.put(
  */
 router.delete("/product/:productId", ProductController.deleteProductById);
 
+/**
+ * @swagger
+ * /products/search:
+ *   get:
+ *     tags: [Products]
+ *     summary: Search for products based on a query string
+ *     parameters:
+ *       - in: query
+ *         name: query
+ *         required: true
+ *         description: The search query string
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns the matched products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/ProductResponse'
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/products/search", ProductController.searchProducts);
+
 export default router;

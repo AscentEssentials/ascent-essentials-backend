@@ -377,6 +377,48 @@ export class ProductController {
       res.status(500).send("Internal Server Error");
     }
   }
+
+  /**
+   * Search for products based on a query string.
+   */
+  static async searchProducts(req: Request, res: Response): Promise<void> {
+    try {
+      const query = req.query.query as string;
+
+      if (!query || typeof query !== "string") {
+        console.error("[ProductController] Invalid search query");
+        res.status(400).send("Invalid search query");
+        return;
+      }
+
+      // Perform the partial text search using $regex
+      const products: IProductDocument[] = await ProductModel.find({
+        $or: [
+          { name: { $regex: query, $options: "i" } }, // Case-insensitive matching
+          { brand: { $regex: query, $options: "i" } },
+          { description: { $regex: query, $options: "i" } },
+        ],
+      });
+
+      // Response to respect the ProductResponse schema.
+      const response = products.map((product) => ({
+        _id: product._id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        subCategoryId: product.subCategoryId,
+        description: product.description,
+        technicalSpecifications: product.technicalSpecifications,
+        quantity: product.quantity,
+        images: product.images,
+      }));
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.error("[ProductController] Error searching products:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
 }
 
 export default ProductController;
