@@ -34,6 +34,35 @@ router.get("/categories", CategoryController.getAllCategories);
 /**
  * @swagger
  * /category:
+ *   get:
+ *     tags: [Categories]
+ *     summary: Get details of a category
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         required: true
+ *         description: The ID of the category to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns details of a category
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CategoryResponse'
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Category not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/category", CategoryController.getCategory);
+
+/**
+ * @swagger
+ * /category:
  *   post:
  *     tags: [Categories]
  *     summary: Create a new category
