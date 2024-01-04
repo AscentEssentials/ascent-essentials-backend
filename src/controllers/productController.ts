@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import ProductModel, { IProductDocument } from "../models/productModel";
 import { directoryToStoreImages } from "../utils/multerConfig";
 import SubCategoryModel from "../models/subCategoryModel";
+import CategoryModel from "../models/categoryModel";
 import mongoose from "mongoose";
 import path from "path";
 import fs from "fs";
@@ -126,6 +127,70 @@ export class ProductController {
         console.error("[ProductController] Error creating product:", error);
         res.status(500).send("Internal Server Error");
       }
+    }
+  }
+
+  /**
+   * Get all products of a category.
+   */
+  static async getProductsByCategory(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    try {
+      const categoryId = req.params.categoryId;
+
+      // Validate if categoryId is a valid ObjectId
+      if (!categoryId || !mongoose.Types.ObjectId.isValid(categoryId)) {
+        console.error("[ProductController] Invalid category id");
+        res.status(400).send("Invalid category id");
+        return;
+      }
+      // Check if the category exists
+      const isCategoryExists = await CategoryModel.exists({
+        _id: categoryId,
+      });
+      if (!isCategoryExists) {
+        console.error("[ProductController] Category not found");
+        res.status(404).send("Category not found");
+        return;
+      }
+
+      // Find all subcategories in the specified category
+      const subcategories = await SubCategoryModel.find({
+        categoryId: categoryId,
+      });
+
+      // Extract subcategory IDs
+      const subcategoryIds = subcategories.map(
+        (subcategory) => subcategory._id
+      );
+
+      // Find all products in the extracted subcategories
+      const products: IProductDocument[] = await ProductModel.find({
+        subCategoryId: { $in: subcategoryIds }, // Use $in to find products in multiple subcategories
+      });
+
+      // Response to respect the ProductResponse schema.
+      const response = products.map((product) => ({
+        _id: product._id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        subCategoryId: product.subCategoryId,
+        description: product.description,
+        technicalSpecifications: product.technicalSpecifications,
+        quantity: product.quantity,
+        images: product.images,
+      }));
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.error(
+        "[ProductController] Error fetching products by category:",
+        error
+      );
+      res.status(500).send("Internal Server Error");
     }
   }
 

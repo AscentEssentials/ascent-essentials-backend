@@ -93,6 +93,40 @@ router.get("/products", ProductController.getAllProducts);
 
 /**
  * @swagger
+ * /products/category/{categoryId}:
+ *   get:
+ *     tags: [Products]
+ *     summary: Get all products in a category
+ *     parameters:
+ *       - in: path
+ *         name: categoryId
+ *         required: true
+ *         description: The ID of the category
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns all products in the category
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/ProductResponse'
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Category not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get(
+  "/products/category/:categoryId",
+  ProductController.getProductsByCategory
+);
+
+/**
+ * @swagger
  * /products/subcategory/{subcategoryId}:
  *   get:
  *     tags: [Products]
