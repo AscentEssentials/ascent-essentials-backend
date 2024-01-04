@@ -391,13 +391,18 @@ export class ProductController {
         return;
       }
 
-      // Perform the partial text search using $regex
+      // Tokenize and stem the search query
+      const tokens = query.split(" ").map((token) => new RegExp(token, "i"));
+
+      // Perform a flexible search using Mongoose $or and $regex
       const products: IProductDocument[] = await ProductModel.find({
-        $or: [
-          { name: { $regex: query, $options: "i" } }, // Case-insensitive matching
-          { brand: { $regex: query, $options: "i" } },
-          { description: { $regex: query, $options: "i" } },
-        ],
+        $or: tokens.map((token) => ({
+          $or: [
+            { name: { $regex: token } },
+            { brand: { $regex: token } },
+            { description: { $regex: token } },
+          ],
+        })),
       });
 
       // Response to respect the ProductResponse schema.
