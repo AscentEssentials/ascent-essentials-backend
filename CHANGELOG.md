@@ -1,3 +1,10 @@
+## [5.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/5.0.0...5.1.0) (2024-01-04)
+
+
+### Features
+
+* improve product search flexibility ([83d4ebb](https://github.com/AscentEssentials/ascent-essentials-backend/commit/83d4ebb05e6a88f58745253bfb5edc907a384b89))
+
 ## [5.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/4.0.0...5.0.0) (2024-01-03)
 
 
