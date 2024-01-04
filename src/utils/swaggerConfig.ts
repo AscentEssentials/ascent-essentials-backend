@@ -24,6 +24,7 @@ export const generateSwaggerDocs = () => {
 };
 
 export const serveSwaggerUi = () => {
+  console.info(`Docs available at http://localhost:${port}/api-docs`);
   return swaggerUi.serve;
 };
 
