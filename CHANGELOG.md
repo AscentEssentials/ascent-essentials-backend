@@ -1,3 +1,14 @@
+## [6.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/5.1.0...6.0.0) (2024-01-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* add route to retrieve all products in a category
+
+### Features
+
+* add route to retrieve all products in a category ([80a1c87](https://github.com/AscentEssentials/ascent-essentials-backend/commit/80a1c87999e6d959c68541481d120ba9ef6c0ef0))
+
 ## [5.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/5.0.0...5.1.0) (2024-01-04)
 
 
