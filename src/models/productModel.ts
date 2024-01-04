@@ -111,7 +111,7 @@ import mongoose, { Model, Schema } from "mongoose";
  *         description: "This is the description of Product 1"
  *         technicalSpecifications: { type: "single", diameter: "2.3 mm" }
  *         quantity: 50
- *         images: ["uploads/image1.jpg", "uploads/image2.jpg"]
+ *         images: ["image1.jpg", "image2.jpg"]
  */
 
 /**
