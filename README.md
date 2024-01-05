@@ -26,7 +26,7 @@ To run the server locally, follow these steps:
 Explore the available endpoints by running the server and visiting the `/api-docs` route.
 This documentation is auto-generated through comments in the code.
 
-## Authorization
+## Authentication & Authorization
 This server implements **Bearer token authentication**. To access protected endpoints, follow these steps: 
 To make requests to protected endpoints, you have to:
 1. Obtain a valid access token through the authentication flow (user login);
