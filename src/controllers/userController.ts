@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import UserModel, { IUserDocument } from "../models/userModel";
-
-const jwt_secret = process.env.JWT_SECRET || "a-really-secure-secret-key";
+import { jwt_secret } from "../middleware/authentication";
 
 export class UserController {
   static async registerUser(req: Request, res: Response): Promise<void> {
