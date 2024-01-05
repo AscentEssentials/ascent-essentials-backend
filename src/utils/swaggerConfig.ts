@@ -11,9 +11,18 @@ export const generateSwaggerDocs = () => {
       openapi: "3.0.3",
       info: {
         title: "Ascent Essentials - Backend API",
-        version: "0.1.0",
+        version: "7.0.0",
         description: "Documentation for Ascent Essentials backend",
         servers: [`http://localhost:${port}`],
+      },
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT', // You can customize this based on your implementation
+          },
+        },
       },
     },
     // Path to the API docs
@@ -29,5 +38,15 @@ export const serveSwaggerUi = () => {
 };
 
 export const setupSwaggerUi = (swaggerDocs: any) => {
-  return swaggerUi.setup(swaggerDocs);
+  return swaggerUi.setup(swaggerDocs, {
+    swaggerOptions: {
+      securityDefinitions: {
+        bearerAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'Authorization',
+        },
+      },
+    },
+  });
 };
