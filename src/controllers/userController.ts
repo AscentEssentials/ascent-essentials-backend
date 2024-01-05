@@ -37,7 +37,7 @@ export class UserController {
 
       // Check if the email and password are present in the request
       if (!email || !password) {
-        res.status(400).send("Username or Password not present");
+        res.status(400).send("email or Password not present");
         return;
       }
 
