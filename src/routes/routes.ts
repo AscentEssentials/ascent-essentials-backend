@@ -8,6 +8,7 @@ import {
   serveSwaggerUi,
   setupSwaggerUi,
 } from "../utils/swaggerConfig";
+import userRoutes from "./userRoutes";
 const router = express.Router();
 
 // Auto-generated Swagger docs
@@ -17,6 +18,7 @@ router.use("/api-docs", serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
 router.use("/", categoryRoutes);
 router.use("/", productRoutes);
 router.use("/", subCategoryRoutes);
+router.use("/", userRoutes);
 
 /**
  * @swagger
