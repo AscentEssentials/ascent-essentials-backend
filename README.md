@@ -2,11 +2,17 @@
 
 ## Environment Configuration
 Create environmental variables or define them in a `.env` file in the project root.
-| VARIABLE    | DEFAULT                   | DESCRIPTION                          |
-| ----------- | ------------------------- | ------------------------------------ |
-| PORT        | 3000                      | The port on wich the server will run |
-| MONGODB_URL | mongodb://localhost:27017 | The URL to the MongoDB database      |
+| VARIABLE    | DEFAULT                      | DESCRIPTION                          |
+| ----------- | ---------------------------- | ------------------------------------ |
+| PORT        | 3000                         | The port on wich the server will run |
+| MONGODB_URL | mongodb://localhost:27017    | The URL to the MongoDB database      |
+| JWT_SECRET  | "a-really-secure-secret-key" | The secret key for JWT               |
 
+Note: To generate a jwt secret key, You can use the node's in-built package called crypto to create random strings:
+```
+node
+require("crypto").randomBytes(35).toString("hex")
+```
 
 ## Running the Server
 To run the server locally, follow these steps:
