@@ -23,7 +23,7 @@ To run the server locally, follow these steps:
 
 
 ## API Endpoints
-Explore the available endpoints by running the server and visiting the `/api-docs` route.
+Explore the available endpoints by running the server and visiting the `localhost:3000/api-docs` route.
 This documentation is auto-generated through comments in the code.
 
 ## Authentication & Authorization
