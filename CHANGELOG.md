@@ -1,3 +1,21 @@
+## [7.3.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.2.0...7.3.0) (2024-01-06)
+
+
+### Features
+
+* provide /api-docs route only if env ENABLE_DOCS=true ([a06e98f](https://github.com/AscentEssentials/ascent-essentials-backend/commit/a06e98f03e6210fc05956f409956acc39d7ba06c))
+* set env variable ENABLE_DOCS=true in dev script ([8e3b8aa](https://github.com/AscentEssentials/ascent-essentials-backend/commit/8e3b8aa2336f9e9615dfed8d68f198631466ef96))
+
+
+### Documentation
+
+* update Readme ([4b0b9d4](https://github.com/AscentEssentials/ascent-essentials-backend/commit/4b0b9d43e1758b1418840ec4afc6051d4da88acc))
+
+
+### General maintenance
+
+* improve log for docs endpoint ([4275370](https://github.com/AscentEssentials/ascent-essentials-backend/commit/4275370d2a8c9bca4b6daa5bb918cccfac278077))
+
 ## [7.2.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.1.0...7.2.0) (2024-01-06)
 
 
