@@ -1,3 +1,10 @@
+## [7.2.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.1.0...7.2.0) (2024-01-06)
+
+
+### Features
+
+* provide token when a new user register ([ba95b0c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/ba95b0cfde0c04191ca1af1b922ee32958b7052f))
+
 ## [7.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.0.0...7.1.0) (2024-01-06)
 
 
