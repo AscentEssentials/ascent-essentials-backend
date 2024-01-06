@@ -21,9 +21,8 @@ To run the server locally, follow these steps:
 3. Build with `npm run build`.
 4. Start the server with `npm start` or `npm run dev` for development mode.
 
-
 ## API Endpoints
-Explore the available endpoints by running the server and visiting the `localhost:3000/api-docs` route.
+Explore the available endpoints by running the server in dev mode (`npm run dev`) and visiting the `localhost:3000/api-docs` route.
 This documentation is auto-generated through comments in the code.
 
 ## Authentication & Authorization
