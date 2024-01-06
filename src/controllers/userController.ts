@@ -7,8 +7,16 @@ import { jwt_secret } from "../middleware/authentication";
 export class UserController {
   static async registerUser(req: Request, res: Response): Promise<void> {
     try {
-      const { name, surname, email, address, telephoneNumber, password } =
-        req.body;
+      const {
+        name,
+        surname,
+        email,
+        address,
+        addressNumber,
+        zipCode,
+        telephoneNumber,
+        password,
+      } = req.body;
 
       // Check if the email is already registered
       const existingUser = await UserModel.findOne({ email });
@@ -25,6 +33,8 @@ export class UserController {
         surname,
         email,
         address,
+        addressNumber,
+        zipCode,
         telephoneNumber,
         password: hashedPassword,
       });

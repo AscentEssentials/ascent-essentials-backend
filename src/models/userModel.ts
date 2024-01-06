@@ -48,6 +48,8 @@ export interface IUserDocument extends Document {
   surname: string;
   email: string;
   address: string;
+  addressNumber: string;
+  zipCode: string;
   telephoneNumber: string;
   password: string;
 }
@@ -58,6 +60,8 @@ const userSchema = new Schema<IUserDocument>(
     surname: { type: String, required: true },
     email: { type: String, required: true, unique: true }, // Using unique: true implies the creation of an index
     address: { type: String, required: true },
+    addressNumber: { type: String, required: true },
+    zipCode: { type: String, required: true },
     telephoneNumber: { type: String, required: true },
     password: { type: String, required: true },
   },
