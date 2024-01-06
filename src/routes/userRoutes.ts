@@ -1,7 +1,5 @@
 import express from "express";
 import UserController from "../controllers/userController";
-import { authenticateToken } from "../middleware/authentication";
-import ProductController from "../controllers/productController";
 
 const router = express.Router();
 /**
@@ -79,22 +77,5 @@ router.post("/register", UserController.registerUser);
  *           description: Internal server error
  */
 router.post("/login", UserController.loginUser);
-
-/**
- * @swagger
- * /protected:
- *   get:
- *     summary: Retrieve protected products (Requires authentication)
- *     security:
- *       - BearerAuth: []
- *     responses:
- *       200:
- *         description: Protected products retrieved successfully
- *       401:
- *         description: Unauthorized - Invalid or missing token
- *       403:
- *         description: Forbidden - Token verification failed
- */
-router.get("/protected", authenticateToken, ProductController.getAllProducts);
 
 export default router;
