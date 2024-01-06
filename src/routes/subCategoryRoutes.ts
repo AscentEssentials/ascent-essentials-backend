@@ -83,7 +83,12 @@ router.get("/subcategory", SubCategoryController.getSubCategory);
  *       500:
  *         description: Internal server error
  */
-router.post("/subcategory", authenticateUser, isAdmin, SubCategoryController.createSubCategory);
+router.post(
+  "/subcategory",
+  authenticateUser,
+  isAdmin,
+  SubCategoryController.createSubCategory
+);
 
 /**
  * @swagger
@@ -124,6 +129,11 @@ router.post("/subcategory", authenticateUser, isAdmin, SubCategoryController.cre
  *       500:
  *         description: Internal server error
  */
-router.put("/subcategory/:id", authenticateUser, isAdmin, SubCategoryController.editSubCategory);
+router.put(
+  "/subcategory/:id",
+  authenticateUser,
+  isAdmin,
+  SubCategoryController.editSubCategory
+);
 
 export default router;
