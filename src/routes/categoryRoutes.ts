@@ -1,5 +1,6 @@
 import express from "express";
 import CategoryController from "../controllers/categoryController";
+import { authenticateToken, isAdmin } from "../middleware/authentication";
 
 /**
  * Express router for handling category and subcategory related routes.
@@ -66,6 +67,8 @@ router.get("/category", CategoryController.getCategory);
  *   post:
  *     tags: [Categories]
  *     summary: Create a new category
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -81,9 +84,18 @@ router.get("/category", CategoryController.getCategory);
  *               $ref: '#/components/schemas/CategoryResponse'
  *       400:
  *         description: Bad request
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
  *       500:
  *         description: Internal server error
  */
-router.post("/category", CategoryController.createCategory);
+router.post(
+  "/category",
+  authenticateToken,
+  isAdmin,
+  CategoryController.createCategory
+);
 
 export default router;
