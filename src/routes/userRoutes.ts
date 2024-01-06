@@ -24,7 +24,15 @@ const router = express.Router();
  *               $ref: '#/components/schemas/User'
  *       responses:
  *         201:
- *           description: User registered successfully
+ *           description: User registered successfully, returns JWT token
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   token:
+ *                     type: string
+ *                     description: JWT token for authentication
  *         400:
  *           description: Bad request or missing required fields
  *         500:

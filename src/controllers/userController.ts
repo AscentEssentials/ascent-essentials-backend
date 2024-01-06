@@ -45,7 +45,12 @@ export class UserController {
 
       await newUser.save();
 
-      res.status(201).send("User registered successfully");
+      // Generate and send JWT token
+      const token = jwt.sign({ userId: newUser._id }, jwt_secret, {
+        expiresIn: "30d",
+      });
+
+      res.status(201).json({ token });
     } catch (error) {
       console.error("[UserController] Error registering user:", error);
       res.status(500).send("Internal Server Error");
