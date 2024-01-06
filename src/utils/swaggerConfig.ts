@@ -20,7 +20,7 @@ export const generateSwaggerDocs = () => {
           bearerAuth: {
             type: 'http',
             scheme: 'bearer',
-            bearerFormat: 'JWT', // You can customize this based on your implementation
+            bearerFormat: 'JWT',
           },
         },
       },
