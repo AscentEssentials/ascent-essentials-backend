@@ -82,6 +82,9 @@ import mongoose, { Document, Model, Schema } from "mongoose";
  *         telephoneNumber:
  *           type: string
  *           description: The telephone number of the user
+ *         isAdmin:
+ *           type: boolean
+ *           description: True if the user is an admin, false otherwise
  *       example:
  *         name: "John"
  *         surname: "Doe"
@@ -90,6 +93,7 @@ import mongoose, { Document, Model, Schema } from "mongoose";
  *         addressNumber: "456"
  *         zipCode: "12345"
  *         telephoneNumber: "+1234567890"
+ *         isAdmin: false
  */
 
 export interface IUserDocument extends Document {

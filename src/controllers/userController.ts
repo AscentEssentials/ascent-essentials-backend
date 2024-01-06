@@ -113,6 +113,7 @@ export class UserController {
         addressNumber: user.addressNumber,
         zipCode: user.zipCode,
         telephoneNumber: user.telephoneNumber,
+        isAdmin: user.isAdmin,
       };
 
       res.status(200).json(response);
