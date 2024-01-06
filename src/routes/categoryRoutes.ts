@@ -1,6 +1,6 @@
 import express from "express";
 import CategoryController from "../controllers/categoryController";
-import { authenticateToken, isAdmin } from "../middleware/authentication";
+import { authenticateUser, isAdmin } from "../middleware/authentication";
 
 /**
  * Express router for handling category and subcategory related routes.
@@ -93,7 +93,7 @@ router.get("/category", CategoryController.getCategory);
  */
 router.post(
   "/category",
-  authenticateToken,
+  authenticateUser,
   isAdmin,
   CategoryController.createCategory
 );

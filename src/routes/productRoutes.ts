@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { ProductController } from "../controllers/productController";
 import { upload, directoryToStoreImages } from "../utils/multerConfig";
-import { authenticateToken, isAdmin } from "../middleware/authentication";
+import { authenticateUser, isAdmin } from "../middleware/authentication";
 
 /**
  * Express router for handling product-related routes.
@@ -46,7 +46,7 @@ const router = express.Router();
  */
 router.post(
   "/product",
-  authenticateToken,
+  authenticateUser,
   isAdmin,
   upload.array("images"),
   ProductController.createProduct
@@ -238,7 +238,7 @@ router.get("/product/:productId", ProductController.getProductById);
  */
 router.put(
   "/product/:productId",
-  authenticateToken,
+  authenticateUser,
   isAdmin,
   upload.array("images"),
   ProductController.editProduct
@@ -275,7 +275,7 @@ router.put(
  */
 router.delete(
   "/product/:productId",
-  authenticateToken,
+  authenticateUser,
   isAdmin,
   ProductController.deleteProductById
 );
