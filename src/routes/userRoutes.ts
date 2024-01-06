@@ -1,5 +1,6 @@
 import express from "express";
 import UserController from "../controllers/userController";
+import { authenticateToken } from "../middleware/authentication";
 
 const router = express.Router();
 /**
@@ -77,5 +78,27 @@ router.post("/register", UserController.registerUser);
  *           description: Internal server error
  */
 router.post("/login", UserController.loginUser);
+
+/**
+ * @swagger
+ *   /user:
+ *     get:
+ *       summary: Get user details
+ *       tags: [Users]
+ *       security:
+ *         - bearerAuth: []
+ *       responses:
+ *         200:
+ *           description: Returns user details
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/UserResponse'
+ *         401:
+ *           description: Unauthorized
+ *         500:
+ *           description: Internal server error
+ */
+router.get("/user", authenticateToken, UserController.getUserDetails);
 
 export default router;
