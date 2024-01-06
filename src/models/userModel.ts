@@ -62,6 +62,7 @@ export interface IUserDocument extends Document {
   zipCode: string;
   telephoneNumber: string;
   password: string;
+  isAdmin: boolean;
 }
 
 const userSchema = new Schema<IUserDocument>(
@@ -74,6 +75,7 @@ const userSchema = new Schema<IUserDocument>(
     zipCode: { type: String, required: true },
     telephoneNumber: { type: String, required: true },
     password: { type: String, required: true },
+    isAdmin: { type: Boolean, default: false },
   },
   { timestamps: true } // automatically adds two fields to the schema: createdAt and updatedAt
 );
