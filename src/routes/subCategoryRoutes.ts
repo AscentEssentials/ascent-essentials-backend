@@ -1,5 +1,6 @@
 import express from "express";
 import SubCategoryController from "../controllers/subCategoryController";
+import { authenticateToken } from "../middleware/authentication";
 
 const router = express.Router();
 
@@ -58,6 +59,8 @@ router.get("/subcategory", SubCategoryController.getSubCategory);
  *   post:
  *     tags: [Categories]
  *     summary: Create a new subcategory
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -76,7 +79,7 @@ router.get("/subcategory", SubCategoryController.getSubCategory);
  *       500:
  *         description: Internal server error
  */
-router.post("/subcategory", SubCategoryController.createSubCategory);
+router.post("/subcategory", authenticateToken, SubCategoryController.createSubCategory);
 
 /**
  * @swagger
@@ -84,6 +87,8 @@ router.post("/subcategory", SubCategoryController.createSubCategory);
  *   put:
  *     tags: [Categories]
  *     summary: Update details of a subcategory
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -111,6 +116,6 @@ router.post("/subcategory", SubCategoryController.createSubCategory);
  *       500:
  *         description: Internal server error
  */
-router.put("/subcategory/:id", SubCategoryController.editSubCategory);
+router.put("/subcategory/:id", authenticateToken, SubCategoryController.editSubCategory);
 
 export default router;
