@@ -10,6 +10,13 @@ export class UserController {
       const { name, surname, email, address, telephoneNumber, password } =
         req.body;
 
+      // Check if the email is already registered
+      const existingUser = await UserModel.findOne({ email });
+      if (existingUser) {
+        res.status(400).send("Email is already registered");
+        return;
+      }
+
       // Hash the password before saving it
       const hashedPassword = await bcrypt.hash(password, 10);
 
