@@ -27,8 +27,8 @@ Explore the available endpoints by running the server and visiting the `localhos
 This documentation is auto-generated through comments in the code.
 
 ## Authentication & Authorization
-This server implements **Bearer token authentication**. To access protected endpoints, follow these steps: 
-To make requests to protected endpoints, you have to:
+This server implements **Bearer token authentication**. 
+To access protected endpoints, follow these steps: 
 1. Obtain a valid access token through the authentication flow (user login);
 2. Include the obtained access token in the request by adding a new header:
    - **Key:** `Authorization`
