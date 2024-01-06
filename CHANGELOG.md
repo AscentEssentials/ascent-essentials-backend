@@ -1,3 +1,54 @@
+## [7.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/6.0.0...7.0.0) (2024-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* add a route to retrieve user details
+* user routes to register and login
+
+### Features
+
+* add a /protected route to test auth ([cef0b08](https://github.com/AscentEssentials/ascent-essentials-backend/commit/cef0b08a6562df10a9e2cb95ffd8033fce75560e))
+* add a route to retrieve user details ([b6e20e4](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b6e20e4be041ad802037fe060821144b706a7a57))
+* add addressNumber and zipCode in user data ([13835c1](https://github.com/AscentEssentials/ascent-essentials-backend/commit/13835c1b9869dd312c219b5abeb909d62ae29c4a))
+* add auth middleware ([21a8305](https://github.com/AscentEssentials/ascent-essentials-backend/commit/21a8305ef0e6d508d51ea85f21a63b10d7383cc4))
+* add isAdmin field to user ([d52ab06](https://github.com/AscentEssentials/ascent-essentials-backend/commit/d52ab06574e282f8762044cbcaea780189ba9c1b))
+* add user Controller ([4730bfd](https://github.com/AscentEssentials/ascent-essentials-backend/commit/4730bfdeaf29a6f815cb549766396aa2527b810b))
+* add user Model ([cf33519](https://github.com/AscentEssentials/ascent-essentials-backend/commit/cf33519e35d0f503118784da279459897dbdf497))
+* Check if the email is already registered ([6b291df](https://github.com/AscentEssentials/ascent-essentials-backend/commit/6b291df9054f412a160317c1d8a0788ebcbe263a))
+* improve authentication.ts ([971ead9](https://github.com/AscentEssentials/ascent-essentials-backend/commit/971ead9095d6fdfe91431b5f8da31ac5b28a4c2e))
+* removed route used for tests ([1ec668a](https://github.com/AscentEssentials/ascent-essentials-backend/commit/1ec668a9489220c0ca695de6b9e04fbae2b1cae2))
+* user routes to register and login ([5e34f52](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5e34f52727fa79efc9da9eb687f12761bff6f088))
+
+
+### Documentation
+
+* add Authentication in Readme ([9d6921e](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9d6921e263bed6fba8039ed4f4c72f07b81ef8b8))
+* add bearer auth to swagger ([505afb7](https://github.com/AscentEssentials/ascent-essentials-backend/commit/505afb779b43ef8256811fa852a2be5838f958c7))
+* add swagger doc for user model ([3f64152](https://github.com/AscentEssentials/ascent-essentials-backend/commit/3f64152683a76b6cc24a4e1c3f1a79adc482c829))
+* add UserResponse schema for swagger ([5edb3d1](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5edb3d11551e6ac16d8109c4212d2f0d923cda1b))
+* update api-docs url in Readme ([e5e28f9](https://github.com/AscentEssentials/ascent-essentials-backend/commit/e5e28f90105f7d7f483ff9d68f7299f9b7ddd913))
+* update product schema to match the actual implementation ([279905f](https://github.com/AscentEssentials/ascent-essentials-backend/commit/279905f7afe3ce148ffb57eabfa0146dabacbe4c))
+* update readme with JWT_SECRET env variable ([984951d](https://github.com/AscentEssentials/ascent-essentials-backend/commit/984951d1deacafe24e268dfb798cdd45bce7165c))
+* update user swagger doc ([9ab8081](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9ab80815aeec7bf3167aa8d08297806aeac5b7fd))
+
+
+### Build and continuous integration
+
+* add jsonwebtoken and bcrypt dependencies ([f7c3c38](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f7c3c3808d5865bfda96fd5bc9303134306fda3d))
+
+
+### General maintenance
+
+* add a log that indicate the url for docs ([427a015](https://github.com/AscentEssentials/ascent-essentials-backend/commit/427a0155159f24c2ee864c2ecbab7698604a6afd))
+* correct response status message ([012b2e6](https://github.com/AscentEssentials/ascent-essentials-backend/commit/012b2e66766c6b66ec0b14e75579af94e85e12d6))
+* remove useless comment ([dac30c7](https://github.com/AscentEssentials/ascent-essentials-backend/commit/dac30c73a356d93406e6e874b5a5a0e7bdf1da5e))
+
+
+### Refactoring
+
+* move jwt_secret key declaration to authentication.ts file ([6603979](https://github.com/AscentEssentials/ascent-essentials-backend/commit/6603979a1dbb07c6be5ccddeec5da1bc8655c04b))
+
 ## [6.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/5.1.0...6.0.0) (2024-01-04)
 
 
