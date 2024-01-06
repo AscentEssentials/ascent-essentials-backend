@@ -1,3 +1,24 @@
+## [7.4.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.3.0...7.4.0) (2024-01-06)
+
+
+### Features
+
+* add authentication to post category route ([f359863](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f359863e20df8353fcad86201d8042e5f0170e39))
+* add authentication to some product routes ([9e43102](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9e43102459104fe4d419d51c03e4ab4a2fb8d1e4))
+* add authentication to some subcategory routes ([0d452f7](https://github.com/AscentEssentials/ascent-essentials-backend/commit/0d452f71773cf1676e12022d124480f4f0d61d98))
+* check if isAdmin to some product routes ([181d56e](https://github.com/AscentEssentials/ascent-essentials-backend/commit/181d56e1a4a18051d504ddf990197033c1818d31))
+* check if isAdmin to some subcategory routes ([bd768f5](https://github.com/AscentEssentials/ascent-essentials-backend/commit/bd768f5d5220cc1c7a5b61ed4a19c4e94c813bf3))
+
+
+### Style improvements
+
+* format subCategoryRoutes.ts ([a1b7cdd](https://github.com/AscentEssentials/ascent-essentials-backend/commit/a1b7cddfd07f91d9bd17975ada21a939c6082341))
+
+
+### Refactoring
+
+* change name of authentication function ([d603361](https://github.com/AscentEssentials/ascent-essentials-backend/commit/d6033613532824e87f405e31f01bdacaa9da5e5a))
+
 ## [7.3.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.2.0...7.3.0) (2024-01-06)
 
 
