@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { ProductController } from "../controllers/productController";
 import { upload, directoryToStoreImages } from "../utils/multerConfig";
-import { authenticateToken } from "../middleware/authentication";
+import { authenticateToken, isAdmin } from "../middleware/authentication";
 
 /**
  * Express router for handling product-related routes.
@@ -35,6 +35,10 @@ const router = express.Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ProductResponse'
+ *       '401':
+ *         description: Unauthorized
+ *       '403':
+ *         description: Forbidden
  *       '400':
  *         description: Bad request
  *       '500':
@@ -43,6 +47,7 @@ const router = express.Router();
 router.post(
   "/product",
   authenticateToken,
+  isAdmin,
   upload.array("images"),
   ProductController.createProduct
 );
@@ -222,6 +227,10 @@ router.get("/product/:productId", ProductController.getProductById);
  *               $ref: '#/components/schemas/ProductResponse'
  *       '400':
  *         description: Bad request
+ *       '401':
+ *         description: Unauthorized
+ *       '403':
+ *         description: Forbidden
  *       '404':
  *         description: Product not found
  *       '500':
@@ -230,6 +239,7 @@ router.get("/product/:productId", ProductController.getProductById);
 router.put(
   "/product/:productId",
   authenticateToken,
+  isAdmin,
   upload.array("images"),
   ProductController.editProduct
 );
@@ -254,12 +264,21 @@ router.put(
  *         description: Product deleted successfully
  *       '400':
  *         description: Bad request
+ *       '401':
+ *         description: Unauthorized
+ *       '403':
+ *         description: Forbidden
  *       '404':
  *         description: Product not found
  *       '500':
  *         description: Internal server error
  */
-router.delete("/product/:productId", authenticateToken, ProductController.deleteProductById);
+router.delete(
+  "/product/:productId",
+  authenticateToken,
+  isAdmin,
+  ProductController.deleteProductById
+);
 
 /**
  * @swagger
