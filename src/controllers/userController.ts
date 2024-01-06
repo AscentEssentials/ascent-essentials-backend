@@ -2,9 +2,13 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import UserModel, { IUserDocument } from "../models/userModel";
-import { jwt_secret } from "../middleware/authentication";
+import { AuthenticatedRequest, jwt_secret } from "../middleware/authentication";
 
 export class UserController {
+  /**
+   * Registers a new user.
+   *
+   */
   static async registerUser(req: Request, res: Response): Promise<void> {
     try {
       const {
@@ -48,6 +52,11 @@ export class UserController {
     }
   }
 
+  /**
+   * Logs in a user by validating the email and password,
+   * and generates a JWT token upon successful authentication.
+   *
+   */
   static async loginUser(req: Request, res: Response): Promise<void> {
     try {
       const { email, password } = req.body;
@@ -80,6 +89,35 @@ export class UserController {
       res.status(200).json({ token });
     } catch (error) {
       console.error("[UserController] Error logging in user:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
+   * Returns the user details.
+   *
+   */
+  static async getUserDetails(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const user = req.user as IUserDocument;
+
+      // Response to match the UserResponse schema
+      const response = {
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        address: user.address,
+        addressNumber: user.addressNumber,
+        zipCode: user.zipCode,
+        telephoneNumber: user.telephoneNumber,
+      };
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.error("[UserController] Error getting user details:", error);
       res.status(500).send("Internal Server Error");
     }
   }

@@ -5,7 +5,7 @@ import UserModel, { IUserDocument } from "../models/userModel";
 export const jwt_secret =
   process.env.JWT_SECRET || "a-really-(in)secure-secret-key";
 
-interface AuthenticatedRequest extends Request {
+export interface AuthenticatedRequest extends Request {
   user?: IUserDocument;
 }
 
