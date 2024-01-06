@@ -14,7 +14,9 @@ const router = express.Router();
 // Auto-generated Swagger docs
 const swaggerDocs = generateSwaggerDocs();
 
-router.use("/api-docs", serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
+if (process.env.ENABLE_DOCS === "true") {
+  router.use("/api-docs", serveSwaggerUi(), setupSwaggerUi(swaggerDocs));
+}
 router.use("/", categoryRoutes);
 router.use("/", productRoutes);
 router.use("/", subCategoryRoutes);
