@@ -9,7 +9,7 @@ export interface AuthenticatedRequest extends Request {
   user?: IUserDocument;
 }
 
-export const authenticateToken = async (
+export const authenticateUser = async (
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction

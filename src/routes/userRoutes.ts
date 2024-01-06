@@ -1,6 +1,6 @@
 import express from "express";
 import UserController from "../controllers/userController";
-import { authenticateToken } from "../middleware/authentication";
+import { authenticateUser } from "../middleware/authentication";
 
 const router = express.Router();
 /**
@@ -99,6 +99,6 @@ router.post("/login", UserController.loginUser);
  *         500:
  *           description: Internal server error
  */
-router.get("/user", authenticateToken, UserController.getUserDetails);
+router.get("/user", authenticateUser, UserController.getUserDetails);
 
 export default router;
