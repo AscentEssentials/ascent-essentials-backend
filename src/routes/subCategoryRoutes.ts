@@ -1,6 +1,6 @@
 import express from "express";
 import SubCategoryController from "../controllers/subCategoryController";
-import { authenticateToken } from "../middleware/authentication";
+import { authenticateToken, isAdmin } from "../middleware/authentication";
 
 const router = express.Router();
 
@@ -76,10 +76,14 @@ router.get("/subcategory", SubCategoryController.getSubCategory);
  *               $ref: '#/components/schemas/SubCategoryResponse'
  *       400:
  *         description: Bad request
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
  *       500:
  *         description: Internal server error
  */
-router.post("/subcategory", authenticateToken, SubCategoryController.createSubCategory);
+router.post("/subcategory", authenticateToken, isAdmin, SubCategoryController.createSubCategory);
 
 /**
  * @swagger
@@ -111,11 +115,15 @@ router.post("/subcategory", authenticateToken, SubCategoryController.createSubCa
  *               $ref: '#/components/schemas/SubCategoryResponse'
  *       400:
  *         description: Bad request
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
  *       404:
  *         description: Subcategory not found
  *       500:
  *         description: Internal server error
  */
-router.put("/subcategory/:id", authenticateToken, SubCategoryController.editSubCategory);
+router.put("/subcategory/:id", authenticateToken, isAdmin, SubCategoryController.editSubCategory);
 
 export default router;
