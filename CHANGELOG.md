@@ -1,3 +1,15 @@
+## [7.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.0.0...7.1.0) (2024-01-06)
+
+
+### Features
+
+* provide isAdmin value with user details ([b40a81d](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b40a81d48a1ca31227d200ad5cb9412c4db585fe))
+
+
+### General maintenance
+
+* remove useless sentence in Readme ([ec38f99](https://github.com/AscentEssentials/ascent-essentials-backend/commit/ec38f99cda568c403930c0920c8897e391e1e4a5))
+
 ## [7.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/6.0.0...7.0.0) (2024-01-06)
 
 
