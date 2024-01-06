@@ -11,6 +11,8 @@ import mongoose, { Document, Model, Schema } from "mongoose";
  *         - surname
  *         - email
  *         - address
+ *         - addressNumber
+ *         - zipCode
  *         - telephoneNumber
  *         - password
  *       properties:
@@ -27,6 +29,12 @@ import mongoose, { Document, Model, Schema } from "mongoose";
  *         address:
  *           type: string
  *           description: The address of the user
+ *         addressNumber:
+ *           type: string
+ *           description: The address number of the user
+ *         zipCode:
+ *           type: string
+ *           description: The zip code of the user's address
  *         telephoneNumber:
  *           type: string
  *           description: The telephone number of the user
@@ -39,6 +47,8 @@ import mongoose, { Document, Model, Schema } from "mongoose";
  *         surname: "Doe"
  *         email: "john.doe@example.com"
  *         address: "123 Main Street, City"
+ *         addressNumber: "456"
+ *         zipCode: "12345"
  *         telephoneNumber: "+1234567890"
  *         password: "securepassword"
  */
