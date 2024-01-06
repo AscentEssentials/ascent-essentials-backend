@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { ProductController } from "../controllers/productController";
 import { upload, directoryToStoreImages } from "../utils/multerConfig";
+import { authenticateToken } from "../middleware/authentication";
 
 /**
  * Express router for handling product-related routes.
@@ -19,6 +20,8 @@ const router = express.Router();
  *     tags:
  *       - Products
  *     summary: Create a new product
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -39,6 +42,7 @@ const router = express.Router();
  */
 router.post(
   "/product",
+  authenticateToken,
   upload.array("images"),
   ProductController.createProduct
 );
@@ -194,6 +198,8 @@ router.get("/product/:productId", ProductController.getProductById);
  *   put:
  *     tags: [Products]
  *     summary: Update details of a product
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: productId
@@ -223,6 +229,7 @@ router.get("/product/:productId", ProductController.getProductById);
  */
 router.put(
   "/product/:productId",
+  authenticateToken,
   upload.array("images"),
   ProductController.editProduct
 );
@@ -233,6 +240,8 @@ router.put(
  *   delete:
  *     tags: [Products]
  *     summary: Delete a product by ID
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: productId
@@ -250,7 +259,7 @@ router.put(
  *       '500':
  *         description: Internal server error
  */
-router.delete("/product/:productId", ProductController.deleteProductById);
+router.delete("/product/:productId", authenticateToken, ProductController.deleteProductById);
 
 /**
  * @swagger
