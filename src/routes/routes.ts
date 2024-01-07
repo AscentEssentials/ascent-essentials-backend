@@ -9,6 +9,7 @@ import {
   setupSwaggerUi,
 } from "../utils/swaggerConfig";
 import userRoutes from "./userRoutes";
+import cartRoutes from "./cartRoutes";
 const router = express.Router();
 
 // Auto-generated Swagger docs
@@ -21,6 +22,7 @@ router.use("/", categoryRoutes);
 router.use("/", productRoutes);
 router.use("/", subCategoryRoutes);
 router.use("/", userRoutes);
+router.use("/", cartRoutes)
 
 /**
  * @swagger
