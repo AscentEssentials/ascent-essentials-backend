@@ -26,7 +26,7 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CartResponse'
+ *               $ref: '#/components/schemas/Cart'
  *       401:
  *         description: Unauthorized
  *       500:
@@ -55,7 +55,7 @@ router.get("/cart", authenticateUser, CartController.getUserCart);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CartResponse'
+ *               $ref: '#/components/schemas/Cart'
  *       400:
  *         description: Bad request
  *       401:
@@ -94,7 +94,7 @@ router.post("/cart/add", authenticateUser, CartController.addToCart);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CartResponse'
+ *               $ref: '#/components/schemas/Cart'
  *       400:
  *         description: Bad request or invalid product ID or quantity
  *       401:
@@ -131,7 +131,7 @@ router.put(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CartResponse'
+ *               $ref: '#/components/schemas/Cart'
  *       400:
  *         description: Bad request or invalid product ID
  *       401:
@@ -157,7 +157,7 @@ router.delete("/cart/remove", authenticateUser, CartController.removeFromCart);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CartResponse'
+ *               $ref: '#/components/schemas/Cart'
  *       401:
  *         description: Unauthorized
  *       500:
