@@ -72,33 +72,43 @@ router.post("/cart/add", authenticateUser, CartController.addToCart);
  * /cart/update:
  *   put:
  *     tags: [Cart]
- *     summary: Update cart
+ *     summary: Update the quantity of a product in the cart
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       description: Product ID and quantity
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/CartRequest'
+ *     parameters:
+ *       - in: query
+ *         name: productId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the product in the cart to update
+ *       - in: query
+ *         name: quantity
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The new quantity of the product in the cart
  *     responses:
  *       200:
- *         description: Returns cart details
+ *         description: Returns updated cart details
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CartResponse'
  *       400:
- *         description: Bad request
+ *         description: Bad request or invalid product ID or quantity
  *       401:
  *         description: Unauthorized
  *       404:
- *         description: Product not found
+ *         description: Product not found in the cart
  *       500:
  *         description: Internal server error
  */
-//router.put("/cart/update", authenticateUser, CartController.updateCart);
+router.put(
+  "/cart/update",
+  authenticateUser,
+  CartController.updateCartItemQuantity
+);
 
 /**
  * @swagger
