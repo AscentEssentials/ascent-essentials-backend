@@ -1,3 +1,10 @@
+## [8.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.0.0...8.1.0) (2024-01-07)
+
+
+### Features
+
+* print error message in the console ([7d1d8ec](https://github.com/AscentEssentials/ascent-essentials-backend/commit/7d1d8ec680ccedf701d3af4234156e95dd1d6fac))
+
 ## [8.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.4.0...8.0.0) (2024-01-07)
 
 
