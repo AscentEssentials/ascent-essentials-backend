@@ -6,6 +6,7 @@ import CategoryModel from "../models/categoryModel";
 import mongoose from "mongoose";
 import path from "path";
 import fs from "fs";
+import { error } from "console";
 
 /**
  * Controller for handling product-related operations.
@@ -75,12 +76,12 @@ export class ProductController {
           typeof parsedTechnicalSpecifications !== "object" ||
           isNaN(numericQuantity)
         ) {
-          console.error("[ProductController] Invalid or missing product data");
+          console.error("[ProductController] Invalid or missing product data", error);
           res.status(400).send("Invalid or missing product data");
           return;
         }
       } catch (error) {
-        console.error("[ProductController] Invalid or missing product data");
+        console.error("[ProductController] Invalid or missing product data", error);
         res.status(400).send("Invalid or missing product data");
         return;
       }
