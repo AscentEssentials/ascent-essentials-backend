@@ -98,8 +98,8 @@ export class CartController {
         } as ICartItemDocument);
       }
 
-      // Update the order total
-      userCart.orderTotal += product.price.valueOf();
+      // Update the cart total
+      userCart.cartTotal += product.price.valueOf();
 
       // Save the updated cart
       await userCart.save();
@@ -163,8 +163,8 @@ export class CartController {
       // Remove the product from the cart
       const removedProduct = userCart.items.splice(productIndex, 1)[0];
 
-      // Update the order total
-      userCart.orderTotal -= removedProduct.quantity * product.price.valueOf();
+      // Update the cart total
+      userCart.cartTotal -= removedProduct.quantity * product.price.valueOf();
 
       // Save the updated cart
       await userCart.save();
@@ -201,9 +201,9 @@ export class CartController {
         return;
       }
 
-      // Clear the cart items and update the order total
+      // Clear the cart items and update the cart total
       userCart.items = [];
-      userCart.orderTotal = 0;
+      userCart.cartTotal = 0;
 
       // Save the updated cart
       await userCart.save();
@@ -280,9 +280,9 @@ export class CartController {
       // Update the quantity of the product in the cart
       userCart.items[productIndex].quantity = newQuantity;
 
-      // Update the order total
-      userCart.orderTotal =
-        userCart.orderTotal -
+      // Update the cart total
+      userCart.cartTotal =
+        userCart.cartTotal -
         product.price.valueOf() * userCart.items[productIndex].quantity +
         product.price.valueOf() * newQuantity;
 
@@ -307,7 +307,7 @@ const createNewCart = async (
   const newCart: ICartDocument = new CartModel({
     userId,
     items: [],
-    orderTotal: 0,
+    cartTotal: 0,
   });
   await newCart.save();
   return newCart;
