@@ -105,33 +105,33 @@ router.post("/cart/add", authenticateUser, CartController.addToCart);
  * /cart/remove:
  *   delete:
  *     tags: [Cart]
- *     summary: Remove a product from cart
+ *     summary: Remove a product from the cart
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       description: Product ID
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/CartRequest'
+ *     parameters:
+ *       - in: query
+ *         name: productId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the product to remove from the cart
  *     responses:
  *       200:
- *         description: Returns cart details
+ *         description: Returns updated cart details
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CartResponse'
  *       400:
- *         description: Bad request
+ *         description: Bad request or invalid product ID
  *       401:
  *         description: Unauthorized
  *       404:
- *         description: Product not found
+ *         description: Product not found in the cart
  *       500:
  *         description: Internal server error
  */
-//router.delete("/cart/remove", authenticateUser, CartController.removeFromCart);
+router.delete("/cart/remove", authenticateUser, CartController.removeFromCart);
 
 /**
  * @swagger
