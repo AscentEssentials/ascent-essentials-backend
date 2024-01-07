@@ -42,13 +42,13 @@ router.get("/cart", authenticateUser, CartController.getUserCart);
  *     summary: Add a product to cart
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       description: Product ID and quantity
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/CartRequest'
+ *     parameters:
+ *       - in: query
+ *         name: productId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the product to add to the cart
  *     responses:
  *       200:
  *         description: Returns cart details
@@ -65,7 +65,7 @@ router.get("/cart", authenticateUser, CartController.getUserCart);
  *       500:
  *         description: Internal server error
  */
-//router.post("/cart/add", authenticateUser, CartController.addToCart);
+router.post("/cart/add", authenticateUser, CartController.addToCart);
 
 /**
  * @swagger
