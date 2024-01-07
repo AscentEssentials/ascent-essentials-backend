@@ -178,6 +178,42 @@ export class CartController {
       res.status(500).send("Internal Server Error");
     }
   }
+  /**
+   * Clear the user's cart.
+   */
+  static async clearCart(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const user = req.user as IUserDocument;
+      const userId = user._id;
+
+      // Find the user's cart
+      const userCart: ICartDocument | null = await CartModel.findOne({
+        userId,
+      });
+
+      // Return a new cart if the cart doesn't exist
+      if (!userCart) {
+        const newCart = await createNewCart(userId);
+        res.status(200).json(newCart);
+        return;
+      }
+
+      // Clear the cart items and update the order total
+      userCart.items = [];
+      userCart.orderTotal = 0;
+
+      // Save the updated cart
+      await userCart.save();
+
+      res.status(200).json(userCart);
+    } catch (error) {
+      console.error("[CartController] Error clearing user's cart:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
 }
 export default CartController;
 

@@ -153,6 +153,6 @@ router.delete("/cart/remove", authenticateUser, CartController.removeFromCart);
  *       500:
  *         description: Internal server error
  */
-//router.delete("/cart/clear", authenticateUser, CartController.clearCart);
+router.delete("/cart/clear", authenticateUser, CartController.clearCart);
 
 export default router;
