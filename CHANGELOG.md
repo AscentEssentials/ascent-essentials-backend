@@ -1,3 +1,34 @@
+## [8.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.4.0...8.0.0) (2024-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* provide route to Update the quantity of a product in the cart
+* provide a route to clear the cart
+* provide route to remove a product from the cart
+* add route to add a product to cart
+* add route to retrieve the cart
+
+### Features
+
+* add cart model ([af55563](https://github.com/AscentEssentials/ascent-essentials-backend/commit/af55563bbf9086f54c5b39d2bd07e7c221375357))
+* add route to add a product to cart ([7c7b6d6](https://github.com/AscentEssentials/ascent-essentials-backend/commit/7c7b6d66095ce3f2dfede7f0752f6c57e44f7e1a))
+* add route to retrieve the cart ([29fe624](https://github.com/AscentEssentials/ascent-essentials-backend/commit/29fe6240314856b4b5e407e1f01ba2b7cf0e0777))
+* provide a route to clear the cart ([f18af66](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f18af66695a1c9b4d8938d52882fb6c46b769e99))
+* provide route to remove a product from the cart ([ce726a8](https://github.com/AscentEssentials/ascent-essentials-backend/commit/ce726a89e1b071c0ab499259f414bc6f3dd0eff1))
+* provide route to Update the quantity of a product in the cart ([54f7c08](https://github.com/AscentEssentials/ascent-essentials-backend/commit/54f7c0813b4d1c9ca89c7082d5bc02f53bc16ade))
+
+
+### Documentation
+
+* update delete cart description in swagger ([a24c427](https://github.com/AscentEssentials/ascent-essentials-backend/commit/a24c42771950c8b0db9a9b6a7ab013aeb8b2b6ce))
+* update swagger response for cart routes ([5081805](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5081805aa87c06a30c3d23d246dad9d030395bde))
+
+
+### Refactoring
+
+* rename field: orderTotal -> cartTotal ([f9199f9](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f9199f9618c8dce9b4c394e9a01c39dfdcfc9e67))
+
 ## [7.4.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/7.3.0...7.4.0) (2024-01-06)
 
 
