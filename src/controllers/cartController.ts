@@ -214,6 +214,90 @@ export class CartController {
       res.status(500).send("Internal Server Error");
     }
   }
+
+  /**
+   * Update the quantity of a product in the user's cart.
+   */
+  static async updateCartItemQuantity(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const user = req.user as IUserDocument;
+      const userId = user._id;
+      const productId = req.query.productId as string;
+      const newQuantity = parseInt(req.query.quantity as string);
+
+      // Validate if productId is a valid ObjectId
+      if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+        res.status(400).send("Invalid product id");
+        return;
+      }
+
+      // Validate if newQuantity is a valid integer
+      if (!newQuantity || isNaN(newQuantity) || newQuantity < 0) {
+        res.status(400).send("Invalid quantity");
+        return;
+      }
+
+      // Find the user's cart
+      const userCart: ICartDocument | null = await CartModel.findOne({
+        userId,
+      });
+
+      // Return 404 if the cart doesn't exist
+      if (!userCart) {
+        res.status(404).send("Cart not found");
+        return;
+      }
+
+      // Find the index of the product in the cart
+      const productIndex = userCart.items.findIndex(
+        (item: ICartItemDocument) => item.productId.toString() === productId
+      );
+
+      // Return 404 if the product is not in the cart
+      if (productIndex === -1) {
+        res.status(404).send("Product not found in the cart");
+        return;
+      }
+
+      // Fetch the product details to get the price
+      const product = await ProductModel.findById(productId);
+
+      // Return 404 if the product is not found
+      if (!product) {
+        res.status(404).send("Product not found in the store");
+        return;
+      }
+
+      // Check if the newQuantity exceeds the available stock
+      if (newQuantity > product.quantity) {
+        res.status(400).send("Not enough quantity available, the available quantity is " + product.quantity.toString() + "");
+        return;
+      }
+
+      // Update the quantity of the product in the cart
+      userCart.items[productIndex].quantity = newQuantity;
+
+      // Update the order total
+      userCart.orderTotal =
+        userCart.orderTotal -
+        product.price.valueOf() * userCart.items[productIndex].quantity +
+        product.price.valueOf() * newQuantity;
+
+      // Save the updated cart
+      await userCart.save();
+
+      res.status(200).json(userCart);
+    } catch (error) {
+      console.error(
+        "[CartController] Error updating cart item quantity:",
+        error
+      );
+      res.status(500).send("Internal Server Error");
+    }
+  }
 }
 export default CartController;
 
