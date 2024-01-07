@@ -53,19 +53,19 @@ const cartItemSchema = new Schema<ICartItemDocument>({
  *           type: array
  *           items:
  *             $ref: '#/components/schemas/CartItem'
- *         orderTotal:
+ *         cartTotal:
  *           type: number
- *           description: The total amount of the order
+ *           description: The total amount of the cart
  *       example:
  *         userId: "60a9b8e5b6f9b7287418b16c"
  *         items: [{ productId: "60a9b8e5b6f9b7287418b16c", quantity: 2 }]
- *         orderTotal: 50.99
+ *         cartTotal: 50.99
  */
 
 export interface ICartDocument extends mongoose.Document {
     userId: mongoose.Schema.Types.ObjectId;
     items: ICartItemDocument[];
-    orderTotal: number;
+    cartTotal: number;
 }
 
 const cartSchema = new Schema<ICartDocument>({
@@ -75,7 +75,7 @@ const cartSchema = new Schema<ICartDocument>({
         required: true,
     },
     items: [cartItemSchema],
-    orderTotal: { type: Number, required: true },
+    cartTotal: { type: Number, required: true },
 });
 
 const cartModel: Model<ICartDocument> = mongoose.model("Cart", cartSchema);
