@@ -148,7 +148,7 @@ router.delete("/cart/remove", authenticateUser, CartController.removeFromCart);
  * /cart/clear:
  *   delete:
  *     tags: [Cart]
- *     summary: Clear cart
+ *     summary: Remove all products from cart
  *     security:
  *       - bearerAuth: []
  *     responses:
