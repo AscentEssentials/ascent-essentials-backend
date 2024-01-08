@@ -48,7 +48,7 @@ export class CartController {
     try {
       const user = req.user as IUserDocument;
       const userId = user._id;
-      const productId = req.query.productId as string;
+      const productId = req.body.productId as string;
 
       // Validate if productId is a valid ObjectId
       if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
@@ -225,8 +225,8 @@ export class CartController {
     try {
       const user = req.user as IUserDocument;
       const userId = user._id;
-      const productId = req.query.productId as string;
-      const newQuantity = parseInt(req.query.quantity as string);
+      const productId = req.body.productId as string;
+      const newQuantity = parseInt(req.body.quantity as string);
 
       // Validate if productId is a valid ObjectId
       if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
@@ -273,7 +273,13 @@ export class CartController {
 
       // Check if the newQuantity exceeds the available stock
       if (newQuantity > product.quantity) {
-        res.status(400).send("Not enough quantity available, the available quantity is " + product.quantity.toString() + "");
+        res
+          .status(400)
+          .send(
+            "Not enough quantity available, the available quantity is " +
+              product.quantity.toString() +
+              ""
+          );
         return;
       }
 
