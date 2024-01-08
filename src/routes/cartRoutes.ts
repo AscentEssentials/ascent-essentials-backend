@@ -39,16 +39,20 @@ router.get("/cart", authenticateUser, CartController.getUserCart);
  * /cart/add:
  *   post:
  *     tags: [Cart]
- *     summary: Add a product to cart
+ *     summary: Add a product to cart. If the product is already in the cart, the quantity will be increased by 1.
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: query
- *         name: productId
- *         required: true
- *         schema:
- *           type: string
- *         description: The ID of the product to add to the cart
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: string
+ *             required:
+ *               - productId
  *     responses:
  *       200:
  *         description: Returns cart details
@@ -72,22 +76,23 @@ router.post("/cart/add", authenticateUser, CartController.addToCart);
  * /cart/update:
  *   put:
  *     tags: [Cart]
- *     summary: Update the quantity of a product in the cart
+ *     summary: Update the quantity of a product in the cart. The product must already be in the cart.
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: query
- *         name: productId
- *         required: true
- *         schema:
- *           type: string
- *         description: The ID of the product in the cart to update
- *       - in: query
- *         name: quantity
- *         required: true
- *         schema:
- *           type: integer
- *         description: The new quantity of the product in the cart
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: string
+ *               quantity:
+ *                 type: integer
+ *             required:
+ *               - productId
+ *               - quantity
  *     responses:
  *       200:
  *         description: Returns updated cart details
