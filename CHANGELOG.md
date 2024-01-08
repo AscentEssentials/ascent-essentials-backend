@@ -1,3 +1,10 @@
+## [8.1.1](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.1.0...8.1.1) (2024-01-08)
+
+
+### Bug Fixes
+
+* product price is now a "number" instead of a "Number" ([dbddb36](https://github.com/AscentEssentials/ascent-essentials-backend/commit/dbddb3608bfbfbca006933a4de916fbf00d6a2de))
+
 ## [8.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.0.0...8.1.0) (2024-01-07)
 
 
