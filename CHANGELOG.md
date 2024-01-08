@@ -1,3 +1,15 @@
+## [8.1.2](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.1.1...8.1.2) (2024-01-08)
+
+
+### Bug Fixes
+
+* in POST and PUT routes, take parameters from body instead of query ([2480555](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2480555fa88a0ed7c2acd1e5183123e62df7522e))
+
+
+### Documentation
+
+* update swagger docs, now parameters are in the body for PUT and POST routes ([77431bc](https://github.com/AscentEssentials/ascent-essentials-backend/commit/77431bc0c97a829d8c5ffb2cc6a5e299a4359a81))
+
 ## [8.1.1](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.1.0...8.1.1) (2024-01-08)
 
 
