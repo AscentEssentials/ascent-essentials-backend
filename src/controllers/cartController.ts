@@ -99,7 +99,7 @@ export class CartController {
       }
 
       // Update the cart total
-      userCart.cartTotal += product.price.valueOf();
+      userCart.cartTotal += product.price;
 
       // Save the updated cart
       await userCart.save();

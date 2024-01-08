@@ -120,7 +120,7 @@ import mongoose, { Model, Schema } from "mongoose";
 export interface IProductDocument extends mongoose.Document {
   name: string;
   brand: string;
-  price: Number;
+  price: number;
   subCategoryId: mongoose.Schema.Types.ObjectId;
   description: string;
   technicalSpecifications: Record<string, unknown>; // JSON field
