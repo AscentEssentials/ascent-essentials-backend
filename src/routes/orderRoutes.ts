@@ -18,16 +18,18 @@ const router = express.Router();
  * /orders:
  *   get:
  *     tags: [Order]
- *     summary: Get all orders of the actual user
+ *     summary: Get all orders of the authenticated user
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Returns all orders of the actual user
+ *         description: Returns all orders of the authenticated user
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Order'
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Order'
  *       401:
  *         description: Unauthorized
  *       500:
@@ -44,7 +46,7 @@ router.get(
  * /admin/orders:
  *   get:
  *     tags: [Order]
- *     summary: Get all orders of all users
+ *     summary: Get all orders of all users (Admin only)
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -53,9 +55,13 @@ router.get(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Order'
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Order'
  *       401:
  *         description: Unauthorized
+ *       403:
+ *         description: Forbidden. Only admin users have access.
  *       500:
  *         description: Internal server error
  */
@@ -92,6 +98,8 @@ router.get(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Order'
+ *       400:
+ *         description: Bad Request
  *       401:
  *         description: Unauthorized
  *       500:
