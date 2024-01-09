@@ -158,6 +158,32 @@ export class OrderController {
   }
 
   /**
+   * Get all orders of a specific user (Admin only).
+   */
+  static async getAllOrdersOfUser(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const userId = req.params.userId;
+
+      const orders: IOrderDocument[] = await OrderModel.find({ userId }).sort({
+        createdAt: -1,
+      });
+
+      // Response to respect the array of Order schema.
+      const response = orders.map((order) =>
+        OrderController.mapOrderToResponse(order)
+      );
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.error("[OrderController] Error fetching orders:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
    * Private function to map an IOrderDocument to a response object respecting the Order schema.
    */
   private static mapOrderToResponse(order: IOrderDocument) {
