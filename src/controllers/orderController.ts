@@ -75,7 +75,7 @@ export class OrderController {
     try {
       const user = req.user as IUserDocument;
       const userId = user._id;
-      const shippingCosts = req.body.shippingCosts;
+      const shippingCosts = 0;
 
       // Find the user's cart in the database
       const userCart: ICartDocument | null = await CartModel.findOne({
