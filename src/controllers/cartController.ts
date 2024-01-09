@@ -31,6 +31,12 @@ export class CartController {
         return;
       }
 
+      // Update the cart total (maybe the price of a product has changed)
+      userCart.cartTotal = await getCartTotal(userCart);
+
+      // Save the updated cart
+      await userCart.save();
+
       res.status(200).json(userCart);
     } catch (error) {
       console.error("[CartController] Error getting user's cart:", error);
@@ -166,10 +172,10 @@ export class CartController {
       }
 
       // Remove the product from the cart
-      const removedProduct = userCart.items.splice(productIndex, 1)[0];
+      userCart.items.splice(productIndex, 1)[0];
 
       // Update the cart total
-      userCart.cartTotal -= removedProduct.quantity * product.price.valueOf();
+      userCart.cartTotal = await getCartTotal(userCart);
 
       // Save the updated cart
       await userCart.save();
@@ -267,7 +273,7 @@ export class CartController {
         return;
       }
 
-      // Fetch the product details to get the price
+      // Fetch the product details
       const product = await ProductModel.findById(productId);
 
       // Return 404 if the product is not found
@@ -292,13 +298,9 @@ export class CartController {
       userCart.items[productIndex].quantity = newQuantity;
 
       // Update the cart total
-      userCart.cartTotal =
-        userCart.cartTotal -
-        product.price.valueOf() * userCart.items[productIndex].quantity +
-        product.price.valueOf() * newQuantity;
+      userCart.cartTotal = await getCartTotal(userCart);
 
-      // Save the updated cart
-      await userCart.save();
+      userCart.save();
 
       res.status(200).json(userCart);
     } catch (error) {
