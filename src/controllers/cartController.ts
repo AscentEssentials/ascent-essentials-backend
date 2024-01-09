@@ -162,15 +162,6 @@ export class CartController {
         return;
       }
 
-      // Fetch the product details to get the price
-      const product = await ProductModel.findById(productId);
-
-      // Return 404 if the product is not found
-      if (!product) {
-        res.status(404).send("Product not found in the store");
-        return;
-      }
-
       // Remove the product from the cart
       userCart.items.splice(productIndex, 1)[0];
 
