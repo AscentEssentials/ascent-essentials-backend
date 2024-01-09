@@ -17,7 +17,7 @@ const router = express.Router();
  * /admin/coupons:
  *   get:
  *     tags: [Coupons]
- *     summary: Get all coupons
+ *     summary: Get all coupons (Admin only)
  *     security:
  *       - bearerAuth: []
  *     responses:
