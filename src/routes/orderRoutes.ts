@@ -203,4 +203,38 @@ router.patch(
   OrderController.updateOrderStatus
 );
 
+/**
+ * @swagger
+ * /admin/orders/{orderId}:
+ *   delete:
+ *     tags: [Order]
+ *     summary: Delete a specific order (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the order to be deleted
+ *     responses:
+ *       204:
+ *         description: Order successfully deleted
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden. Only admin users have access.
+ *       404:
+ *         description: Order not found
+ *       500:
+ *         description: Internal server error
+ */
+router.delete(
+  "/admin/orders/:orderId",
+  authenticateUser,
+  isAdmin,
+  OrderController.deleteOrder
+);
+
 export default router;
