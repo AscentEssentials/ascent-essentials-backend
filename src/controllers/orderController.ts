@@ -22,6 +22,31 @@ export class OrderController {
       const orders: IOrderDocument[] = await OrderModel.find({ userId }).sort({
         createdAt: -1,
       });
+
+      // Response to respect the array of Order schema.
+      const response = orders.map((order) =>
+        OrderController.mapOrderToResponse(order)
+      );
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.error("[OrderController] Error fetching orders:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
+   * Get all orders of all users.
+   */
+  static async getAllOrders(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const orders: IOrderDocument[] = await OrderModel.find().sort({
+        createdAt: -1,
+      });
+
       // Response to respect the array of Order schema.
       const response = orders.map((order) =>
         OrderController.mapOrderToResponse(order)
