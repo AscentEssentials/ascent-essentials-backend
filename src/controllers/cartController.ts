@@ -49,6 +49,7 @@ export class CartController {
       const user = req.user as IUserDocument;
       const userId = user._id;
       const productId = req.body.productId as string;
+      const quantityRequired = parseInt(req.body.quantity as string);
 
       // Validate if productId is a valid ObjectId
       if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
@@ -64,7 +65,7 @@ export class CartController {
       }
 
       // Check if there is enough quantity of the product
-      if (product.quantity <= 0) {
+      if (product.quantity < quantityRequired) {
         res.status(400).send("Not enough quantity available");
         return;
       }
@@ -84,8 +85,9 @@ export class CartController {
 
       if (existingCartItem) {
         // If the product is already in the cart, check if there's enough quantity
-        if (existingCartItem.quantity < product.quantity) {
-          existingCartItem.quantity += 1;
+        const futureQuantity = existingCartItem.quantity + quantityRequired;
+        if (futureQuantity <= product.quantity) {
+          existingCartItem.quantity = futureQuantity;
         } else {
           res.status(400).send("Not enough quantity available");
           return;
@@ -94,12 +96,15 @@ export class CartController {
         // If the product is not in the cart, add a new item
         userCart.items.push({
           productId: product._id,
-          quantity: 1,
+          quantity: quantityRequired,
         } as ICartItemDocument);
       }
 
+      // Save the updated cart
+      await userCart.save();
+
       // Update the cart total
-      userCart.cartTotal += product.price;
+      userCart.cartTotal = await getCartTotal(userCart);
 
       // Save the updated cart
       await userCart.save();
