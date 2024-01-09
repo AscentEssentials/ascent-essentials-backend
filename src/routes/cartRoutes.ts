@@ -39,7 +39,7 @@ router.get("/cart", authenticateUser, CartController.getUserCart);
  * /cart/add:
  *   post:
  *     tags: [Cart]
- *     summary: Add a product to cart. If the product is already in the cart, the quantity will be increased by 1.
+ *     summary: Add a product to the cart. Quantity is the number of items to add to the cart. If the product is already in the cart, the quantity is increased.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -51,8 +51,11 @@ router.get("/cart", authenticateUser, CartController.getUserCart);
  *             properties:
  *               productId:
  *                 type: string
+ *               quantity:
+ *                 type: integer
  *             required:
  *               - productId
+ *               - quantity
  *     responses:
  *       200:
  *         description: Returns cart details
