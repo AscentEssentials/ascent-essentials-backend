@@ -73,7 +73,6 @@ router.post(
   CouponController.createCoupon
 );
 
-// swagger doc for route to get details of a specific coupon
 /**
  * @swagger
  * /coupon/{code}:
@@ -99,5 +98,34 @@ router.post(
  *         description: Internal server error
  */
 router.get("/coupon/:code", CouponController.getCoupon);
+
+/**
+ * @swagger
+ * /admin/coupon/{code}:
+ *   delete:
+ *     tags: [Coupons]
+ *     summary: Delete a specific coupon (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: code
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       204:
+ *         description: Coupon deleted successfully
+ *       404:
+ *         description: Coupon not found
+ *       500:
+ *         description: Internal server error
+ */
+router.delete(
+  "/admin/coupon/:code",
+  authenticateUser,
+  isAdmin,
+  CouponController.deleteCoupon
+);
 
 export default router;

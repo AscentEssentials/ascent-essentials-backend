@@ -30,10 +30,7 @@ export class CouponController {
   /**
    * Get a specific coupon.
    */
-  static async getCoupon(
-    req: Request,
-    res: Response
-  ): Promise<void> {
+  static async getCoupon(req: Request, res: Response): Promise<void> {
     try {
       const couponCode = req.params.code;
 
@@ -82,6 +79,34 @@ export class CouponController {
       res.status(201).json(CouponController.mapCouponToResponse(newCoupon));
     } catch (error) {
       console.error("[CouponController] Error creating coupon:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
+   * Delete a specific coupon.
+   */
+  static async deleteCoupon(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const couponCode = req.params.code;
+
+      // find the coupon and delete it
+      const coupon = await CouponModel.findOne({ code: couponCode });
+
+      if (!coupon) {
+        res.status(404).json({ error: "Coupon not found" });
+        return;
+      }
+
+      // delete the coupon
+      await coupon.deleteOne();
+
+      res.status(204).send(); // No content, successful deletion
+    } catch (error) {
+      console.error("[CouponController] Error deleting coupon:", error);
       res.status(500).send("Internal Server Error");
     }
   }
