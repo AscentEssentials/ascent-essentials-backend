@@ -223,7 +223,29 @@ export class OrderController {
       res.status(500).send("Internal Server Error");
     }
   }
-  
+
+  /**
+   * Delete a specific order (Admin only).
+   */
+  static async deleteOrder(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const orderId = req.params.orderId;
+
+      const order = await OrderModel.findByIdAndDelete(orderId);
+      if (!order) {
+        res.status(404).json({ error: "Order not found" });
+        return;
+      }
+
+      res.status(204).send(); // No content, successful deletion
+    } catch (error) {
+      console.error("[OrderController] Error deleting order:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
 
   /**
    * Private function to map an IOrderDocument to a response object respecting the Order schema.
