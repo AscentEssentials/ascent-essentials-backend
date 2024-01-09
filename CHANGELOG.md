@@ -1,3 +1,10 @@
+## [10.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/10.0.0...10.1.0) (2024-01-09)
+
+
+### Features
+
+* remove shipping cost from requestBody ([5453af5](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5453af5fa3e0832e1e1527696a5f8664bbbf0015))
+
 ## [10.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/9.0.0...10.0.0) (2024-01-09)
 
 
