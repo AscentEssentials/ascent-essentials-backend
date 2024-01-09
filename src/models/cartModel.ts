@@ -75,7 +75,7 @@ const cartSchema = new Schema<ICartDocument>({
         required: true,
     },
     items: [cartItemSchema],
-    cartTotal: { type: Number, required: true },
+    cartTotal: { type: Number, required: true, default: 0 },
 });
 
 const cartModel: Model<ICartDocument> = mongoose.model("Cart", cartSchema);
