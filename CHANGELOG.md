@@ -1,3 +1,43 @@
+## [10.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/9.0.0...10.0.0) (2024-01-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* add route to retrieve detail of a specific order
+* route to delete orders
+* route to edit order status
+* edit route to allow the retrieve of an order by id
+* add route to provide orders for a specified user
+* add addOrder route
+* add route to get all orders of all users
+* add route to provide all orders of the actual user
+
+### Features
+
+* add addOrder route ([b16d656](https://github.com/AscentEssentials/ascent-essentials-backend/commit/b16d656746b03917a99b4706e0a7a9735f3683ea))
+* add route to get all orders of all users ([3a7648b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/3a7648b12069d37467336f55c27652bd7579b835))
+* add route to provide all orders of the actual user ([2c4e6e7](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2c4e6e7f7963e884548ba32f9af42e9d58a1bc2c))
+* add route to provide orders for a specified user ([c6be921](https://github.com/AscentEssentials/ascent-essentials-backend/commit/c6be9218d64ecb15059aa2e17a16cad298b1b9da))
+* add route to retrieve detail of a specific order ([57eed53](https://github.com/AscentEssentials/ascent-essentials-backend/commit/57eed53aaf4c2894d34b903abdce4cdd615411b9))
+* edit route to allow the retrieve of an order by id ([2828e65](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2828e656024d5731e375d273871220384b1a33d6))
+* export getCartTotal function ([7db5fd0](https://github.com/AscentEssentials/ascent-essentials-backend/commit/7db5fd05a260491cdc00ee832667c7b3330e7708))
+* implement orderModel ([37e911a](https://github.com/AscentEssentials/ascent-essentials-backend/commit/37e911a0a76bcac5dd391c74da18933059521b08))
+* replicate product data in order details, update product quantity in store and clear cart in addOrder ([5830bbc](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5830bbc6de70115a32fc7896d4fc0800860266f2))
+* route to delete orders ([1348c90](https://github.com/AscentEssentials/ascent-essentials-backend/commit/1348c90798d56c410f34cd8ccf7d1d746cb4d6d0))
+* route to edit order status ([5ef5d43](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5ef5d432cb9078ad4bfd4b24fa26fb134fefe4c0))
+
+
+### Documentation
+
+* add _id in swagger doc for Order schema ([a37ae5c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/a37ae5cf66769d0a00e893b087075c8238dbd2cc))
+* update swagger doc of orderModel ([675d286](https://github.com/AscentEssentials/ascent-essentials-backend/commit/675d286231f0a583b0217509c02e54ad929e270b))
+* update swagger docs in orderRoutes ([d82aeb4](https://github.com/AscentEssentials/ascent-essentials-backend/commit/d82aeb49ab60641b4d94903102aa3a9b212f60ad))
+
+
+### Refactoring
+
+* define a function to map an IOrderDocument to a response object respecting the Order schema ([6f0508c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/6f0508c85c24b17740d3d7d4d192bede905c3eb6))
+
 ## [9.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.1.2...9.0.0) (2024-01-09)
 
 
