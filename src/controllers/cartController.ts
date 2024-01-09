@@ -317,7 +317,7 @@ const createNewCart = async (
   return newCart;
 };
 
-const getCartTotal = async (cart: ICartDocument): Promise<number> => {
+export const getCartTotal = async (cart: ICartDocument): Promise<number> => {
   let total = 0;
   for (let i = 0; i < cart.items.length; i++) {
     const product = await ProductModel.findById(cart.items[i].productId);
