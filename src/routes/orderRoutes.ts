@@ -115,17 +115,6 @@ router.get(
  *     summary: Add a new order, taking the products from the user's cart
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               shippingCosts:
- *                 type: number
- *             required:
- *               - shippingCosts
  *     responses:
  *       201:
  *         description: Order successfully added
