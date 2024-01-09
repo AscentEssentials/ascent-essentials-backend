@@ -49,16 +49,29 @@ export class OrderController {
     res: Response
   ): Promise<void> {
     try {
-      const orders: IOrderDocument[] = await OrderModel.find().sort({
-        createdAt: -1,
-      });
+      const orderId = req.query.orderId as string;
 
-      // Response to respect the array of Order schema.
-      const response = orders.map((order) =>
-        OrderController.mapOrderToResponse(order)
-      );
+      if (orderId) {
+        // If orderId is provided, fetch the specific order
+        const order: IOrderDocument | null = await OrderModel.findById(orderId);
+        if (!order) {
+          res.status(404).json({ error: "Order not found" });
+          return;
+        }
+        const response = OrderController.mapOrderToResponse(order);
+        res.status(200).json(response);
+      } else {
+        // If orderId is not provided, fetch all orders
+        const orders: IOrderDocument[] = await OrderModel.find().sort({
+          createdAt: -1,
+        });
 
-      res.status(200).json(response);
+        const response = orders.map((order) =>
+          OrderController.mapOrderToResponse(order)
+        );
+
+        res.status(200).json(response);
+      }
     } catch (error) {
       console.error("[OrderController] Error fetching orders:", error);
       res.status(500).send("Internal Server Error");

@@ -46,12 +46,18 @@ router.get(
  * /admin/orders:
  *   get:
  *     tags: [Order]
- *     summary: Get all orders of all users (Admin only)
+ *     summary: Get all orders or details of a specific order (Admin only)
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: orderId
+ *         schema:
+ *           type: string
+ *         description: (Optional) The ID of the order to retrieve. If not provided, returns all orders.
  *     responses:
  *       200:
- *         description: Returns all orders of all users
+ *         description: Returns all orders or details of the specified order
  *         content:
  *           application/json:
  *             schema:
@@ -62,6 +68,8 @@ router.get(
  *         description: Unauthorized
  *       403:
  *         description: Forbidden. Only admin users have access.
+ *       404:
+ *         description: Order not found (if orderId is provided)
  *       500:
  *         description: Internal server error
  */
