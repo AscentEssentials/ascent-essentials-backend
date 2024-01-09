@@ -107,4 +107,42 @@ router.get(
  */
 router.post("/order", authenticateUser, OrderController.addOrder);
 
+/**
+ * @swagger
+ * /admin/orders/user/{userId}:
+ *   get:
+ *     tags: [Order]
+ *     summary: Get all orders of a specific user (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the user whose orders need to be retrieved
+ *     responses:
+ *       200:
+ *         description: Returns all orders of the specified user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Order'
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden. Only admin users have access.
+ *       500:
+ *         description: Internal server error
+ */
+router.get(
+  "/admin/orders/user/:userId",
+  authenticateUser,
+  isAdmin,
+  OrderController.getAllOrdersOfUser
+);
+
 export default router;
