@@ -1,8 +1,13 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import OrderModel, { IOrderDocument } from "../models/orderModel";
-import mongoose from "mongoose";
 import { AuthenticatedRequest } from "../middleware/authentication";
-import { IUserDocument } from "../models/userModel";
+import UserModel, { IUserDocument } from "../models/userModel";
+import CartModel, {
+  ICartDocument,
+  ICartItemDocument,
+} from "../models/cartModel";
+import { getCartTotal } from "./cartController";
+import ProductModel, { IProductDocument } from "../models/productModel";
 
 /**
  * Controller for handling order-related operations.
@@ -55,6 +60,79 @@ export class OrderController {
       res.status(200).json(response);
     } catch (error) {
       console.error("[OrderController] Error fetching orders:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
+   * Add a new order.
+   */
+  static async addOrder(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const user = req.user as IUserDocument;
+      const userId = user._id;
+      const shippingCosts = req.body.shippingCosts;
+
+      // Find the user's cart in the database
+      const userCart: ICartDocument | null = await CartModel.findOne({
+        userId,
+      });
+
+      if (!userCart) {
+        // Handle the case where the user's cart is not found
+        res.status(400).json({ error: "User's cart not found" });
+        return;
+      }
+
+      // Extract necessary data from the user's cart
+      const cartTotal = await getCartTotal(userCart);
+      const items = userCart.items;
+
+      // Fetch the user's address from the UserModel
+      const userAddress = await UserModel.findOne({ _id: userId }).select(
+        "address addressNumber zipCode telephoneNumber"
+      );
+
+      // Check if the user's address is available
+      if (!userAddress) {
+        // Handle the case where the user's address is not found
+        res.status(400).json({ error: "User's address not found" });
+        return;
+      }
+
+      // Create the new order
+      const newOrder: IOrderDocument = await OrderModel.create({
+        userId,
+        userAddress: {
+          address: userAddress.address,
+          addressNumber: userAddress.addressNumber,
+          zipCode: userAddress.zipCode,
+          telephoneNumber: userAddress.telephoneNumber,
+        },
+        items: await Promise.all(
+          items.map(async (item: ICartItemDocument) => {
+            const productDetails: IProductDocument | null =
+              await ProductModel.findById(item.productId);
+            if (!productDetails) {
+              throw new Error(
+                `Product details not found for productId: ${item.productId}`
+              );
+            }
+            return productDetails;
+          })
+        ),
+        shippingCosts,
+        orderTotal: cartTotal + shippingCosts,
+        status: "pending",
+      });
+
+      // Return the newly created order as a response
+      res.status(201).json(OrderController.mapOrderToResponse(newOrder));
+    } catch (error) {
+      console.error("[OrderController] Error adding order:", error);
       res.status(500).send("Internal Server Error");
     }
   }
