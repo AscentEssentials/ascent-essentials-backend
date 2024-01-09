@@ -69,10 +69,22 @@ export interface IUserAddress {
   telephoneNumber: string;
 }
 
+export interface IOrderItem {
+  productId: mongoose.Schema.Types.ObjectId;
+  name: string;
+  brand: string;
+  price: number;
+  subCategoryId: mongoose.Schema.Types.ObjectId;
+  description: string;
+  technicalSpecifications: Record<string, unknown>;
+  quantity: number;
+  images: string[];
+}
+
 export interface IOrderDocument extends mongoose.Document {
   userId: mongoose.Schema.Types.ObjectId;
   userAddress: IUserAddress;
-  items: IProductDocument[]; // Reusing the IProductDocument interface for order items
+  items: IOrderItem[];
   orderTotal: number;
   shippingCosts: number;
   status: string;
@@ -94,9 +106,23 @@ const orderSchema = new Schema<IOrderDocument>(
     },
     items: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
+        productId: {
+          type: Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
+        name: { type: String, required: true },
+        brand: { type: String, required: true },
+        price: { type: Number, required: true },
+        subCategoryId: {
+          type: Schema.Types.ObjectId,
+          ref: "SubCategory",
+          required: true,
+        },
+        description: { type: String, required: true },
+        technicalSpecifications: { type: Schema.Types.Mixed },
+        quantity: { type: Number, required: true },
+        images: [{ type: String }],
       },
     ],
     shippingCosts: { type: Number, required: true },
