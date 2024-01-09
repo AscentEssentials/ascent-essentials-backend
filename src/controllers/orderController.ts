@@ -197,6 +197,35 @@ export class OrderController {
   }
 
   /**
+   * Update the status of an order (Admin only).
+   */
+  static async updateOrderStatus(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const orderId = req.params.orderId;
+      const newStatus = req.body.status;
+
+      const order: IOrderDocument | null = await OrderModel.findById(orderId);
+
+      if (!order) {
+        res.status(404).json({ error: "Order not found" });
+        return;
+      }
+
+      order.status = newStatus;
+      await order.save();
+
+      res.status(200).json(OrderController.mapOrderToResponse(order));
+    } catch (error) {
+      console.error("[OrderController] Error updating order status:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+  
+
+  /**
    * Private function to map an IOrderDocument to a response object respecting the Order schema.
    */
   private static mapOrderToResponse(order: IOrderDocument) {

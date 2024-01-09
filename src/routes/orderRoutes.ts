@@ -153,4 +153,54 @@ router.get(
   OrderController.getAllOrdersOfUser
 );
 
+/**
+ * @swagger
+ * /admin/orders/{orderId}/status:
+ *   patch:
+ *     tags: [Order]
+ *     summary: Edit the status of a specific order (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the order whose status needs to be edited
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               status:
+ *                 type: string
+ *             required:
+ *               - status
+ *         description: The new status to be set for the order
+ *     responses:
+ *       200:
+ *         description: Order status successfully updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden. Only admin users have access.
+ *       404:
+ *         description: Order not found
+ *       500:
+ *         description: Internal server error
+ */
+router.patch(
+  "/admin/orders/:orderId/status",
+  authenticateUser,
+  isAdmin,
+  OrderController.updateOrderStatus
+);
+
 export default router;
