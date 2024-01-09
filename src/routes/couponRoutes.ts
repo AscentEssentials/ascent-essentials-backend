@@ -28,7 +28,7 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/CouponResponse'
+ *                 $ref: '#/components/schemas/Coupon'
  *       500:
  *         description: Internal server error
  */
@@ -60,7 +60,7 @@ router.get(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CouponResponse'
+ *               $ref: '#/components/schemas/Coupon'
  *       400:
  *         description: Bad request
  *       500:
@@ -91,7 +91,7 @@ router.post(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CouponResponse'
+ *               $ref: '#/components/schemas/Coupon'
  *       404:
  *         description: Coupon not found
  *       500:

@@ -56,7 +56,7 @@ export class CouponController {
     res: Response
   ): Promise<void> {
     try {
-      const { code, discountAmount, validFrom, validTo } = req.body;
+      const { code, discountAmount } = req.body;
       const coupon = await CouponModel.findOne({ code: code });
 
       if (coupon) {
@@ -64,14 +64,9 @@ export class CouponController {
         return;
       }
 
-      const currentDate = new Date();
-      const newValidFrom = validFrom || currentDate;
-
       const newCoupon = new CouponModel({
         code,
         discountAmount,
-        validFrom: newValidFrom,
-        validTo,
       });
 
       await newCoupon.save();
@@ -116,11 +111,8 @@ export class CouponController {
    */
   private static mapCouponToResponse(coupon: ICouponDocument) {
     return {
-      id: coupon._id,
       code: coupon.code,
       discountAmount: coupon.discountAmount,
-      validFrom: coupon.validFrom,
-      validTo: coupon.validTo,
     };
   }
 }
