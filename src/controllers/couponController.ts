@@ -107,6 +107,36 @@ export class CouponController {
   }
 
   /**
+   * Update the discountAmount of a specific coupon. (Admin only)
+   */
+  static async updateCouponDiscountAmount(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const couponCode = req.params.code;
+      const { discountAmount } = req.body;
+
+      // find the coupon and update it
+      const coupon = await CouponModel.findOneAndUpdate(
+        { code: couponCode },
+        { discountAmount: discountAmount },
+        { new: true }
+      );
+
+      if (!coupon) {
+        res.status(404).json({ error: "Coupon not found" });
+        return;
+      }
+
+      res.status(200).json(CouponController.mapCouponToResponse(coupon));
+    } catch (error) {
+      console.error("[CouponController] Error updating coupon:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
    * Map a coupon document to a coupon response.
    */
   private static mapCouponToResponse(coupon: ICouponDocument) {

@@ -128,4 +128,51 @@ router.delete(
   CouponController.deleteCoupon
 );
 
+/**
+ * @swagger
+ * /admin/coupon/{code}:
+ *   patch:
+ *     tags: [Coupons]
+ *     summary: Update the discountAmount of a specific coupon (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: code
+ *         schema:
+ *           type: string
+ *         required: true
+ *     requestBody:
+ *       description: Updated discountAmount for the coupon
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               discountAmount:
+ *                 type: number
+ *             required:
+ *               - discountAmount
+ *     responses:
+ *       200:
+ *         description: Coupon discountAmount updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Coupon'
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Coupon not found
+ *       500:
+ *         description: Internal server error
+ */
+router.patch(
+  "/admin/coupon/:code",
+  authenticateUser,
+  isAdmin,
+  CouponController.updateCouponDiscountAmount
+);
+
 export default router;
