@@ -43,21 +43,50 @@ router.get(
 
 /**
  * @swagger
- * /admin/orders:
+ * /orders/{orderId}:
  *   get:
  *     tags: [Order]
- *     summary: Get all orders or details of a specific order (Admin only)
+ *     summary: Get details of a specific order. The user can only get details of his own orders, while the admin can get details of any order.
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: query
+ *       - in: path
  *         name: orderId
  *         schema:
  *           type: string
- *         description: (Optional) The ID of the order to retrieve. If not provided, returns all orders.
+ *         required: true
+ *         description: The ID of the order to retrieve details
  *     responses:
  *       200:
- *         description: Returns all orders or details of the specified order
+ *         description: Returns details of the specified order
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Order not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get(
+  "/orders/:orderId",
+  authenticateUser,
+  OrderController.getOrderDetails
+);
+
+/**
+ * @swagger
+ * /admin/orders:
+ *   get:
+ *     tags: [Order]
+ *     summary: Get all orders (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Returns all orders
  *         content:
  *           application/json:
  *             schema:
@@ -68,8 +97,6 @@ router.get(
  *         description: Unauthorized
  *       403:
  *         description: Forbidden. Only admin users have access.
- *       404:
- *         description: Order not found (if orderId is provided)
  *       500:
  *         description: Internal server error
  */

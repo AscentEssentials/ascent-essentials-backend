@@ -49,29 +49,16 @@ export class OrderController {
     res: Response
   ): Promise<void> {
     try {
-      const orderId = req.query.orderId as string;
+      // If orderId is not provided, fetch all orders
+      const orders: IOrderDocument[] = await OrderModel.find().sort({
+        createdAt: -1,
+      });
 
-      if (orderId) {
-        // If orderId is provided, fetch the specific order
-        const order: IOrderDocument | null = await OrderModel.findById(orderId);
-        if (!order) {
-          res.status(404).json({ error: "Order not found" });
-          return;
-        }
-        const response = OrderController.mapOrderToResponse(order);
-        res.status(200).json(response);
-      } else {
-        // If orderId is not provided, fetch all orders
-        const orders: IOrderDocument[] = await OrderModel.find().sort({
-          createdAt: -1,
-        });
+      const response = orders.map((order) =>
+        OrderController.mapOrderToResponse(order)
+      );
 
-        const response = orders.map((order) =>
-          OrderController.mapOrderToResponse(order)
-        );
-
-        res.status(200).json(response);
-      }
+      res.status(200).json(response);
     } catch (error) {
       console.error("[OrderController] Error fetching orders:", error);
       res.status(500).send("Internal Server Error");
@@ -243,6 +230,40 @@ export class OrderController {
       res.status(204).send(); // No content, successful deletion
     } catch (error) {
       console.error("[OrderController] Error deleting order:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
+   * Get details of a specific order.
+   */
+  static async getOrderDetails(
+    req: AuthenticatedRequest,
+    res: Response
+  ): Promise<void> {
+    try {
+      const user = req.user as IUserDocument;
+
+      const orderId = req.params.orderId;
+
+      const order: IOrderDocument | null = await OrderModel.findById(orderId);
+
+      if (!order) {
+        res.status(404).json({ error: "Order not found" });
+        return;
+      }
+
+      if (
+        user.isAdmin === true ||
+        order.userId.toString() === user._id.toString()
+      ) {
+        res.status(200).json(OrderController.mapOrderToResponse(order));
+        return;
+      } else {
+        res.status(401).json({ error: "Unauthorized" });
+      }
+    } catch (error) {
+      console.error("[OrderController] Error fetching order details:", error);
       res.status(500).send("Internal Server Error");
     }
   }
