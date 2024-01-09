@@ -1,3 +1,23 @@
+## [9.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.1.2...9.0.0) (2024-01-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* require quantity in addToCart function
+
+### Features
+
+* implement a function to calculate the total of the cart, based on products that are on it ([adc8033](https://github.com/AscentEssentials/ascent-essentials-backend/commit/adc80339581eb92ccb63499711a2efafac2467bd))
+* remove useless fetch and check ([65dc8f4](https://github.com/AscentEssentials/ascent-essentials-backend/commit/65dc8f4aec6bf62d32ab163af1e3db531ca29c6c))
+* require quantity in addToCart function ([c35d6b3](https://github.com/AscentEssentials/ascent-essentials-backend/commit/c35d6b329623efe2446bbb05e3d7430f51c2a2b0))
+* set default value for cartTotal to 0 ([05555b5](https://github.com/AscentEssentials/ascent-essentials-backend/commit/05555b53af3041a32e2beb454e6ad52091e2d548))
+* use getCartTotal function to calculate the total ([a55c337](https://github.com/AscentEssentials/ascent-essentials-backend/commit/a55c337543ee14f203f1380958c2d09076c789d1))
+
+
+### Documentation
+
+* update swagger docs to require quantity in /cart/add ([2a6c868](https://github.com/AscentEssentials/ascent-essentials-backend/commit/2a6c868291b07fafa7e8d164db542e0f1d6628ab))
+
 ## [8.1.2](https://github.com/AscentEssentials/ascent-essentials-backend/compare/8.1.1...8.1.2) (2024-01-08)
 
 
