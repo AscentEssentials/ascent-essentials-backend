@@ -33,7 +33,11 @@ const router = express.Router();
  *       500:
  *         description: Internal server error
  */
-router.get("/orders", authenticateUser, OrderController.getAllOrdersOfActualUser);
+router.get(
+  "/orders",
+  authenticateUser,
+  OrderController.getAllOrdersOfActualUser
+);
 
 /**
  * @swagger
@@ -55,6 +59,44 @@ router.get("/orders", authenticateUser, OrderController.getAllOrdersOfActualUser
  *       500:
  *         description: Internal server error
  */
-router.get("/admin/orders", authenticateUser, isAdmin, OrderController.getAllOrders);
+router.get(
+  "/admin/orders",
+  authenticateUser,
+  isAdmin,
+  OrderController.getAllOrders
+);
+
+/**
+ * @swagger
+ * /order:
+ *   post:
+ *     tags: [Order]
+ *     summary: Add a new order, taking the products from the user's cart
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               shippingCosts:
+ *                 type: number
+ *             required:
+ *               - shippingCosts
+ *     responses:
+ *       201:
+ *         description: Order successfully added
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+router.post("/order", authenticateUser, OrderController.addOrder);
 
 export default router;
