@@ -1,5 +1,5 @@
 import { Response } from "express";
-import OrderModel, { IOrderDocument } from "../models/orderModel";
+import OrderModel, { IOrderDocument, IOrderItem } from "../models/orderModel";
 import { AuthenticatedRequest } from "../middleware/authentication";
 import UserModel, { IUserDocument } from "../models/userModel";
 import CartModel, {
@@ -8,6 +8,7 @@ import CartModel, {
 } from "../models/cartModel";
 import { getCartTotal } from "./cartController";
 import ProductModel, { IProductDocument } from "../models/productModel";
+import mongoose from "mongoose";
 
 /**
  * Controller for handling order-related operations.
@@ -121,13 +122,32 @@ export class OrderController {
                 `Product details not found for productId: ${item.productId}`
               );
             }
-            return productDetails;
+            await OrderController.updateProductQuantityInTheStore(
+              productDetails.id,
+              item.quantity
+            );
+            return {
+              productId: productDetails.id,
+              name: productDetails.name,
+              brand: productDetails.brand,
+              price: productDetails.price,
+              subCategoryId: productDetails.subCategoryId,
+              description: productDetails.description,
+              technicalSpecifications: productDetails.technicalSpecifications,
+              quantity: item.quantity,
+              images: productDetails.images,
+            } as IOrderItem;
           })
         ),
         shippingCosts,
         orderTotal: cartTotal + shippingCosts,
         status: "pending",
       });
+
+      // Delete the user's cart
+      userCart.items = [];
+      userCart.cartTotal = 0;
+      await userCart.save();
 
       // Return the newly created order as a response
       res.status(201).json(OrderController.mapOrderToResponse(newOrder));
@@ -146,6 +166,7 @@ export class OrderController {
       userId: order.userId,
       userAddress: order.userAddress,
       items: order.items.map((item) => ({
+        productId: item.productId,
         name: item.name,
         brand: item.brand,
         price: item.price,
@@ -160,6 +181,39 @@ export class OrderController {
       status: order.status,
       createdAt: order.createdAt,
     };
+  }
+
+  /**
+   * Update product quantity in the store and check availability.
+   */
+  private static async updateProductQuantityInTheStore(
+    productId: mongoose.Types.ObjectId,
+    quantityBought: number
+  ): Promise<void> {
+    const productDetails: IProductDocument | null = await ProductModel.findById(
+      productId
+    );
+
+    if (!productDetails) {
+      throw new Error(`Product details not found for productId: ${productId}`);
+    }
+
+    // Update the quantity for the bought product
+    const updatedQuantity = productDetails.quantity - quantityBought;
+
+    // Check if the updated quantity is valid
+    if (updatedQuantity < 0) {
+      throw new Error(
+        `Not enough quantity for product: ${productDetails.name}`
+      );
+    }
+
+    // Update the product quantity in the database
+    await ProductModel.findByIdAndUpdate(
+      productId,
+      { quantity: updatedQuantity },
+      { new: true }
+    );
   }
 }
 
