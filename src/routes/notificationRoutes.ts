@@ -64,7 +64,7 @@ router.get(
  *         description: Internal server error
  */
 router.get(
-  "admin/notifications",
+  "/admin/notifications",
   authenticateUser,
   isAdmin,
   NotificationController.getAllAdminNotifications
