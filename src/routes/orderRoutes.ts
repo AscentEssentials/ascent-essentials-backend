@@ -115,6 +115,15 @@ router.get(
  *     summary: Add a new order, taking the products from the user's cart
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               couponCode:
+ *                 type: string
+ *                 description: (Optional) The coupon code to be applied to the order
  *     responses:
  *       201:
  *         description: Order successfully added

@@ -1,5 +1,4 @@
 import mongoose, { Model, Schema } from "mongoose";
-import { IProductDocument } from "./productModel";
 
 /**
  * @swagger
@@ -29,6 +28,12 @@ import { IProductDocument } from "./productModel";
  *         status:
  *           type: string
  *           description: The status of the order (e.g., "pending", "shipped", "delivered")
+ *         couponCode:
+ *           type: string
+ *           description: The coupon code used for the order
+ *         discountAmount:
+ *           type: number
+ *           description: The discount amount of the coupon used for the order
  *         createdAt:
  *           type: string
  *           format: date-time
@@ -54,6 +59,8 @@ import { IProductDocument } from "./productModel";
  *         shippingCosts: 5.00
  *         orderTotal: 44.80
  *         status: "pending"
+ *         couponCode: "SUMMER2021"
+ *         discountAmount: 10
  *         createdAt: "2024-01-10T12:34:56Z"
  */
 
@@ -157,6 +164,8 @@ export interface IOrderDocument extends mongoose.Document {
   orderTotal: number;
   shippingCosts: number;
   status: string;
+  couponCode?: string;
+  discountAmount?: number;
   createdAt: Date;
 }
 
@@ -197,6 +206,8 @@ const orderSchema = new Schema<IOrderDocument>(
     shippingCosts: { type: Number, required: true },
     orderTotal: { type: Number, required: true },
     status: { type: String, default: "pending" },
+    couponCode: { type: String },
+    discountAmount: { type: Number, default: 0 },
   },
   { timestamps: true } // Automatically adds createdAt and updatedAt
 );
