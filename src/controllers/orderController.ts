@@ -10,6 +10,8 @@ import { getCartTotal } from "./cartController";
 import ProductModel, { IProductDocument } from "../models/productModel";
 import mongoose from "mongoose";
 import CouponModel from "../models/couponModel";
+import { UserRole } from "../models/notificationModel";
+import { NotificationController } from "../controllers/notificationController";
 
 /**
  * Controller for handling order-related operations.
@@ -231,6 +233,13 @@ export class OrderController {
 
       order.status = newStatus;
       await order.save();
+
+      // Notification for User
+      NotificationController.createNotification(
+        order.userId,
+        UserRole.Customer,
+        `The status of your order with ID ${order._id} has been updated to ${order.status}`
+      );
 
       res.status(200).json(OrderController.mapOrderToResponse(order));
     } catch (error) {
