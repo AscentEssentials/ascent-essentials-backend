@@ -1,3 +1,28 @@
+## [11.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/10.1.0...11.0.0) (2024-01-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* possibility to add coupon when a new order is made
+* add a route to edit the discout amount of a coupon
+* remove validFrom and validTo fields in coupon. A coupon can be deleted, so if it's present is valid
+* add route to delete a coupon
+* add GET /coupon/:code, POST /admin/coupon, GET /admin/coupons routes
+
+### Features
+
+* add a route to edit the discout amount of a coupon ([9916928](https://github.com/AscentEssentials/ascent-essentials-backend/commit/991692824fb60a3d86592f2ccdfc525901c91285))
+* add GET /coupon/:code, POST /admin/coupon, GET /admin/coupons routes ([242dd29](https://github.com/AscentEssentials/ascent-essentials-backend/commit/242dd292b3c6b55de6fce4dc6796c8292026e3a3))
+* add route to delete a coupon ([f65b8a4](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f65b8a484c6a9b1a53bbd4d7d62fe3565b1c73af))
+* define coupon model ([030b46c](https://github.com/AscentEssentials/ascent-essentials-backend/commit/030b46c248a275ba5937fe216048e8ff522ab50e))
+* possibility to add coupon when a new order is made ([3ef6060](https://github.com/AscentEssentials/ascent-essentials-backend/commit/3ef6060aaf397e588129d822bdf54bd207d2909c))
+* remove validFrom and validTo fields in coupon. A coupon can be deleted, so if it's present is valid ([baa76fd](https://github.com/AscentEssentials/ascent-essentials-backend/commit/baa76fd7b15f6f8a03e2d83b60b82282c46c5001))
+
+
+### Documentation
+
+* update get all coupons description ([0705dfc](https://github.com/AscentEssentials/ascent-essentials-backend/commit/0705dfc5f47b2587905f276b528bf2f9bf64fbfb))
+
 ## [10.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/10.0.0...10.1.0) (2024-01-09)
 
 
