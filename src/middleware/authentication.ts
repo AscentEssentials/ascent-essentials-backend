@@ -19,8 +19,8 @@ export const authenticateUser = async (
   if (!token) return res.status(401).send("Unauthorized");
 
   try {
-    const decoded: any = jwt.verify(token, jwt_secret);
-    const user = await UserModel.findById(decoded.userId);
+    const userId = getUserIdFromToken(token);
+    const user = await UserModel.findById(userId);
 
     if (!user) {
       return res.status(401).send("Invalid user.");
@@ -47,4 +47,9 @@ export const isAdmin = (
   }
 
   next();
+};
+
+export const getUserIdFromToken = (token: string): string => {
+  const decoded: any = jwt.verify(token, jwt_secret);
+  return decoded.userId;
 };
