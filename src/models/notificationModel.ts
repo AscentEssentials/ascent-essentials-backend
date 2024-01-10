@@ -8,12 +8,9 @@ import mongoose, { Model, Schema } from "mongoose";
  *     Notification:
  *       type: object
  *       properties:
- *         recipientId:
+ *         _id:
  *           type: string
- *           description: (Optional) The ID of the recipient user
- *         recipientRole:
- *           type: string
- *           description: The role of the recipient user. Must be either "customer" or "admin"
+ *           description: The auto-generated id of the notification
  *         message:
  *           type: string
  *           description: The message of the notification
@@ -21,13 +18,12 @@ import mongoose, { Model, Schema } from "mongoose";
  *           type: string
  *           description: The date of creation of the notification
  *       example:
- *         recipientId: "60a9b8e5b6f9b7287418b16c"
- *         recipientRole: "customer"
+ *         _id: 60ab2b4f6d4b0a0015f6d4b0
  *         message: "This is a notification"
  *         createdAt: "2021-05-24T14:48:00.000Z"
  */
 
-enum UserRole {
+export enum UserRole {
   Customer = "customer",
   Admin = "admin",
 }
