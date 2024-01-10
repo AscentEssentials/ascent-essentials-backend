@@ -1,3 +1,25 @@
+## [12.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/11.0.0...12.0.0) (2024-01-10)
+
+
+### ⚠ BREAKING CHANGES
+
+*  provide routes to retrieve and delete notifications
+
+### Features
+
+*  provide routes to retrieve and delete notifications ([20b8da2](https://github.com/AscentEssentials/ascent-essentials-backend/commit/20b8da21e6c7c488a6f4e6653aff47ef9e7d548f))
+* define notification model ([7c34f05](https://github.com/AscentEssentials/ascent-essentials-backend/commit/7c34f05f2005401ba23486b911c74a9fc241c858))
+* edit Notification schema. now have _id, message and createdAt ([e50a51b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/e50a51b9685134b3ebb2d6f354956ca79ba91c01))
+* generate a notification for the admin when a new order is made ([5df8c0b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/5df8c0b89c38c4c75159e6b05955b4758e22bc1c))
+* generate a notification for the user when an order status change ([45f5328](https://github.com/AscentEssentials/ascent-essentials-backend/commit/45f532838a9ed82db32a3ffe1f3558e7da76797c))
+* implement a function to insert a notification in the db ([9ad30ad](https://github.com/AscentEssentials/ascent-essentials-backend/commit/9ad30ad29026316a6e385481ada7631c32832fd7))
+
+
+### Bug Fixes
+
+* correct /admin/notifications ([4f17a28](https://github.com/AscentEssentials/ascent-essentials-backend/commit/4f17a284b0d53ce3b04fa0f723b995b32780cbef))
+* correct /admin/notifications/:notificationId delete route ([f1fb66b](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f1fb66b1a6756ad311e74b08c274502cf17313b6))
+
 ## [11.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/10.1.0...11.0.0) (2024-01-10)
 
 
