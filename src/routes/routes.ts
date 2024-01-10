@@ -12,6 +12,7 @@ import userRoutes from "./userRoutes";
 import cartRoutes from "./cartRoutes";
 import orderRoutes from "./orderRoutes";
 import couponRoutes from "./couponRoutes";
+import notificationRoutes from "./notificationRoutes";
 const router = express.Router();
 
 // Auto-generated Swagger docs
@@ -27,6 +28,7 @@ router.use("/", userRoutes);
 router.use("/", cartRoutes);
 router.use("/", orderRoutes);
 router.use("/", couponRoutes);
+router.use("/", notificationRoutes);
 
 /**
  * @swagger
