@@ -131,7 +131,7 @@ router.delete(
  *         description: Internal server error
  */
 router.delete(
-  "admin/notifications/:notificationId",
+  "/admin/notifications/:notificationId",
   authenticateUser,
   isAdmin,
   NotificationController.deleteAdminNotification
