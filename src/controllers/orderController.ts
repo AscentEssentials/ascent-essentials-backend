@@ -9,6 +9,7 @@ import CartModel, {
 import { getCartTotal } from "./cartController";
 import ProductModel, { IProductDocument } from "../models/productModel";
 import mongoose from "mongoose";
+import CouponModel from "../models/couponModel";
 
 /**
  * Controller for handling order-related operations.
@@ -76,21 +77,46 @@ export class OrderController {
       const user = req.user as IUserDocument;
       const userId = user._id;
       const shippingCosts = 0;
+      const couponCode = req.body.couponCode;
 
       // Find the user's cart in the database
       const userCart: ICartDocument | null = await CartModel.findOne({
         userId,
       });
 
+      // Handle the case where the user's cart is not found
       if (!userCart) {
-        // Handle the case where the user's cart is not found
         res.status(400).json({ error: "User's cart not found" });
         return;
+      }
+
+      // Handle the case where the user's cart is empty
+      if (userCart.items.length === 0) {
+        res.status(400).json({ error: "User's cart is empty" });
+        return;
+      }
+
+      // Apply coupon discount if a valid coupon code is provided
+      let couponDiscount = 0;
+      if (couponCode) {
+        const coupon = await CouponModel.findOne({ code: couponCode });
+        if (coupon) {
+          couponDiscount = coupon.discountAmount;
+        } else {
+          res.status(400).json({ error: "Invalid coupon code" });
+          return;
+        }
       }
 
       // Extract necessary data from the user's cart
       const cartTotal = await getCartTotal(userCart);
       const items = userCart.items;
+
+      // Calculate order total including coupon discount
+      let orderTotal = cartTotal + shippingCosts - couponDiscount;
+      if (orderTotal < 0) {
+        orderTotal = 0;
+      }
 
       // Fetch the user's address from the UserModel
       const userAddress = await UserModel.findOne({ _id: userId }).select(
@@ -140,8 +166,10 @@ export class OrderController {
           })
         ),
         shippingCosts,
-        orderTotal: cartTotal + shippingCosts,
+        orderTotal,
         status: "pending",
+        couponCode,
+        discountAmount: couponDiscount,
       });
 
       // Delete the user's cart
@@ -290,6 +318,8 @@ export class OrderController {
       shippingCosts: order.shippingCosts,
       orderTotal: order.orderTotal,
       status: order.status,
+      couponCode: order.couponCode,
+      discountAmount: order.discountAmount,
       createdAt: order.createdAt,
     };
   }
