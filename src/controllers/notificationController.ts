@@ -6,6 +6,11 @@ import NotificationModel, {
 } from "../models/notificationModel";
 import { IUserDocument } from "../models/userModel";
 import mongoose from "mongoose";
+import {
+  SocketEvent,
+  emitEventToAdmins,
+  emitEventToUser,
+} from "../utils/socket";
 
 /**
  * Controller for handling notifications related operations.
@@ -164,6 +169,16 @@ export class NotificationController {
         recipientRole,
         message,
       });
+
+      // Check if recipientId is provided and emit the notification
+      if (recipientId) {
+        emitEventToUser(String(recipientId), SocketEvent.NewNotification, {
+          message,
+        });
+      } else if (recipientRole === UserRole.Admin) {
+        // Emit the notification to all admin users
+        emitEventToAdmins(SocketEvent.NewNotification, { message });
+      }
     } catch (error) {
       console.error(
         "[NotificationController] Error creating notification:",
