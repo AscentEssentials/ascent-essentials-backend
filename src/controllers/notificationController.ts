@@ -5,6 +5,7 @@ import NotificationModel, {
   UserRole,
 } from "../models/notificationModel";
 import { IUserDocument } from "../models/userModel";
+import mongoose from "mongoose";
 
 /**
  * Controller for handling notifications related operations.
@@ -146,6 +147,28 @@ export class NotificationController {
         error
       );
       res.status(500).send("Internal Server Error");
+    }
+  }
+
+  /**
+   * Function to create a notification.
+   */
+  static async createNotification(
+    recipientId: mongoose.Schema.Types.ObjectId | undefined, // make it optional
+    recipientRole: UserRole,
+    message: string
+  ): Promise<void> {
+    try {
+      await NotificationModel.create({
+        recipientId,
+        recipientRole,
+        message,
+      });
+    } catch (error) {
+      console.error(
+        "[NotificationController] Error creating notification:",
+        error
+      );
     }
   }
 
