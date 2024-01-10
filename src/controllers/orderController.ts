@@ -179,6 +179,13 @@ export class OrderController {
       userCart.cartTotal = 0;
       await userCart.save();
 
+      // Notification for Admin
+      NotificationController.createNotification(
+        undefined,
+        UserRole.Admin,
+        `New order with ID ${newOrder._id} has been placed`
+      );
+
       // Return the newly created order as a response
       res.status(201).json(OrderController.mapOrderToResponse(newOrder));
     } catch (error) {
