@@ -29,6 +29,11 @@ mongoose
   });
 
 // Create a Socket.IO server and attach it to the HTTP server
-export const io = new SocketIOServer(server);
+export const io = new SocketIOServer(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 export default server;
