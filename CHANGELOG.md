@@ -1,3 +1,10 @@
+## [12.2.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/12.1.0...12.2.0) (2024-01-11)
+
+
+### Features
+
+* set cors settings for Socket.io ([7990f87](https://github.com/AscentEssentials/ascent-essentials-backend/commit/7990f877d51a450992bf2b33a4af1e0129c61ab5))
+
 ## [12.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/12.0.0...12.1.0) (2024-01-11)
 
 
