@@ -1,3 +1,28 @@
+## [12.1.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/12.0.0...12.1.0) (2024-01-11)
+
+
+### Features
+
+* console log when socket.io connection event ([f5f931f](https://github.com/AscentEssentials/ascent-essentials-backend/commit/f5f931fb896b3fe46e04365c817e8297c2f86860))
+* emit events with Socket.io when a new notification is created ([076b60d](https://github.com/AscentEssentials/ascent-essentials-backend/commit/076b60d131564b98886c3f66768edceaf8f8590d))
+* Socket.io handle ClientLogin and UserDisconnect ([8922113](https://github.com/AscentEssentials/ascent-essentials-backend/commit/89221130480dbefaece109ba01762cade40c840b))
+
+
+### Dependency updates
+
+* **deps:** update dependency @types/node to v20.10.7 ([598daf5](https://github.com/AscentEssentials/ascent-essentials-backend/commit/598daf5f78d3a1155053105753caf6681d94ce4d))
+
+
+### Build and continuous integration
+
+* add @types/socket.io dependency ([0bc8db2](https://github.com/AscentEssentials/ascent-essentials-backend/commit/0bc8db22301ea802f7a3d70a02ddd274279d5b78))
+* add socket.io dependency ([e82dd80](https://github.com/AscentEssentials/ascent-essentials-backend/commit/e82dd80683b891a5408ce76aabb99fa35b450cce))
+
+
+### Refactoring
+
+* define a function to retrieve a userId from a token ([42cb531](https://github.com/AscentEssentials/ascent-essentials-backend/commit/42cb53199ddbf43b1ddb826fc0413cbe1898448f))
+
 ## [12.0.0](https://github.com/AscentEssentials/ascent-essentials-backend/compare/11.0.0...12.0.0) (2024-01-10)
 
 
